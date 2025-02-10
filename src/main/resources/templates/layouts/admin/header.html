@@ -1,0 +1,29 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<header th:fragment="header">
+    <h1 class="logo">
+        <div class="toggle" id="toggle" th:tooltip="#{admin.toggle}" th:flow="right">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <a href="/admin" class="logo">
+            <img th:src="#{app.logo-url}" th:alt="logo_default" />
+        </a>
+    </h1>
+    <script>
+        document.getElementById('toggle').addEventListener('click',()=>{
+            // document.body.classList.toggle('hide')
+            if(document.body.classList.contains('hide')){
+                document.body.classList.remove('hide')
+                document.cookie = `aside-hide=false; path=/admin; expires=90000000`;
+            }else{
+                document.body.classList.add('hide')
+                document.cookie = `aside-hide=true; path=/admin; expires=90000000`;
+            }
+
+
+        })
+    </script>
+</header>
+</html>

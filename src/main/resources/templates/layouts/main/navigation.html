@@ -1,0 +1,39 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<nav th:fragment="navigation" class="quick">
+    <ul>
+        <li>
+            <a th:href="@{https://pf.kakao.com/_FwxdxmG}">
+                <div>
+                    <img th:src="@{/assets/icon/chat.svg}" alt="chat"/>
+                    <span>카톡상담</span>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a>
+                <div>
+                    <img th:src="@{/assets/icon/location.svg}" alt="location"/>
+                    <span>방문상담</span>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{tel:051-816-1470}">
+                <div>
+                    <img th:src="@{/assets/icon/contact.svg}" alt="contact"/>
+                    <span>전화상담</span>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/view/contact}">
+                <div>
+                    <img th:src="@{/assets/icon/inquiry.svg}" alt="inquiry"/>
+                    <span>온라인문의</span>
+                </div>
+            </a>
+        </li>
+    </ul>
+
+</nav>
+</html>

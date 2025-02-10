@@ -1,20 +1,11 @@
 <!DOCTYPE html>
-<html
-        xmlns:th="http://www.thymeleaf.org"
-        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        layout:decorate="~{layouts/index/layout}"
-        layout:fragment="content"
->
-<head>
-    <title>홈 페이지</title>
-</head>
-<body>
-
-<!-- 레이아웃 파일을 기준으로 페이지 내용 렌더링 -->
-<div th:replace="~{layout :: content}">
-    <h1>홈 페이지에 오신 것을 환영합니다!</h1>
-    <p>여기는 홈페이지입니다.</p>
-</div>
-
-</body>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main/layout}">
+    <th:block layout:fragment="content">
+        <section class="main_1"></section>
+        <section class="main_2"></section>
+        <section class="main_3"></section>
+        <section class="main_4"></section>
+    </th:block>
 </html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main/layout}">
+<th:block layout:fragment="content">
+    <form method="post" th:action="@{/account/signUp}">
+        <label>
+            <span>아이디</span>
+            <input type="text" name="accountId" required/>
+        </label>
+        <label>
+            <span>비밀번호</span>
+            <input type="password" name="accountPassword" required/>
+        </label>
+        <label>
+            <span>이름</span>
+            <input type="text" name="name" required/>
+        </label>
+        <label>
+            <span>이메일</span>
+            <input type="email" name="email" />
+        </label>
+        <label>
+            <span>핸드폰</span>
+            <input type="tel" name="phone" />
+        </label>
+        <label>
+            <span>연락처</span>
+            <input type="tel" name="contact" />
+        </label>
+        <button type="submit">회언가입</button>
+    </form>
+</th:block>
+</html>

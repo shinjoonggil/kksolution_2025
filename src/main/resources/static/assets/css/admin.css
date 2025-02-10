@@ -1,0 +1,328 @@
+body {
+    position: relative;
+    font-size: 14px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+
+header {
+    height: 50px;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-white);
+    z-index: 1;
+}
+
+header h1.logo {
+    width: 250px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+header h1.logo .toggle {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+
+header h1.logo .toggle span {
+    width: 3px;
+    height: 3px;
+    background-color: #000;
+    transition: width 200ms ease-in-out;
+}
+body.hide header h1.logo .toggle span{
+    width: 20px;
+}
+
+header h1.logo a {
+    margin: 5px;
+}
+
+header img {
+    height: 30px;
+    object-fit: contain;
+}
+
+footer {
+    height: 40px;
+    box-shadow: 0 0 1px #ccc;
+    text-align: center;
+    line-height: 40px;
+    font-size: 12px;
+    color: var(--color-text);
+    margin-left: 250px;
+}
+
+
+body.hide :is(main,footer){
+    margin-left: 50px;
+}
+
+aside {
+    position: fixed;
+    left: 0;
+    top: 50px;
+    height: calc(100vh - 50px);
+    font-size: 12px;
+    overflow-y: scroll;
+    background-color: var(--color-white);
+
+}
+aside::-webkit-scrollbar{
+    display: none;
+}
+
+aside > ul {
+    white-space: nowrap;
+}
+aside:hover .menu-item{
+    width: 240px !important;
+}
+
+
+aside:hover > ul > li:has(:is(:checked , .menu-item.active)) > ul >li{
+    height: 30px !important;
+    width: inherit !important;
+}
+aside > ul > li .menu-item {
+    display: inline-block;
+    width: 240px;
+    height: 30px;
+    margin: 5px;
+    border-radius: 3px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: width 200ms ease-in-out;
+}
+
+aside > ul > li .menu-item:hover {
+    background-color: #eee;
+}
+
+aside > ul > li .menu-item .icon {
+    display: inline-flex;
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    border-radius: 3px;
+}
+
+aside > ul > li .menu-item .icon img {
+    width: 25px;
+    height: 25px;
+    margin: auto;
+}
+
+aside > ul > li .menu-item span {
+    display: inline-block;
+    line-height: 30px;
+    text-indent: 5px;
+    vertical-align: bottom;
+}
+
+aside > ul > li > ul {
+    /*overflow: hidden;*/
+}
+aside > ul > li > ul > li {
+    height: 0;
+    transition: height 200ms ease-in-out;
+    overflow: hidden;
+}
+aside > ul > li > ul > li.active{
+    font-weight: 600;
+    color: var(--color-primary);
+}
+aside > ul > li > ul > li a{
+    display: block;
+    line-height: 30px;
+    text-indent: 30px;
+}
+aside > ul > li > ul > li a:hover{
+    color: #aaa;
+}
+aside > ul > li:has(:is(:checked , .menu-item.active)) > ul >li{
+    height: 30px;
+}
+
+aside > ul > li .menu-item:is(.active,:has(:checked)) {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+aside > ul > li .menu-item:is(.active,:has(:checked)) img {
+    filter: var(--filter-white);
+}
+
+body.hide aside > ul > li .menu-item{
+    width: 30px;
+}
+body.hide aside > ul > li > ul > li{
+    width: 0 !important;
+    height: 0 !important;
+}
+
+main {
+    min-height: calc(100vh - 50px - 40px);
+    margin-top: 50px;
+    margin-left: 250px;
+    transition: margin-left 200ms ease-in-out;
+}
+
+.tool-box{
+    position: sticky;
+    top:50px;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-white);
+    height: 60px;
+    z-index: 1;
+}
+.tool-box h2{
+    font-size: 16px;
+    font-weight: 400;
+}
+.buttons{
+    display: flex;
+    justify-content: end;
+    gap: 5px;
+}
+.button:is(a,button){
+    display: inline-block;
+    background-color: var(--color-normal);
+    color: var(--color-white);
+    text-align: center;
+    border: inherit;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.buttons :is(a,button){
+    padding: 10px 20px;
+    line-height: 15px;
+}
+.button:is(a,button).primary{
+    background-color: var(--color-primary);
+}
+section{
+    margin: 5px;
+    padding: 5px;
+    border-radius: 3px;
+}
+article{
+    max-width: 800px;
+    margin: auto;
+    padding: 15px;
+}
+fieldset{
+    margin-bottom: 10px;
+}
+fieldset legend{
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+.form-control{
+    position: relative;
+}
+.form-control label {
+    display: inline-block;
+    width: 100%;
+}
+.form-control label span.label{
+    display: inline-block;
+    width: 100%;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+}
+.form-control input{
+    width: 100%;
+    border-radius: 3px;
+    outline: inherit;
+    border: none;
+    background-color: #eee;
+    line-height: 25px;
+    padding: 5px;
+    box-sizing: border-box;
+    display: inline-block;
+}
+.form-control input[size=small]{
+    width: 100px;
+}
+.form-control input[size=medium]{
+    width: 300px;
+}
+.form-control input[size=large]{
+    width: 500px;
+}
+.form-control input[readonly]{
+    color: #888;
+    cursor: default;
+}
+.form-group{
+    width: 100%;
+    display: flex;
+    gap: 5px;
+}
+.form-group .form-control{
+    flex: 1;
+}
+.form-control button{
+    line-height: 25px;
+    padding: 5px;
+}
+
+.modal{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #00000060;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal .modal-container{
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+
+
+/*Quill Editor Custom*/
+.ql-toolbar{
+    position: sticky;
+    top: 120px;
+    border: none !important;
+    border-radius: 3px;
+    background-color: #eee;
+    padding: 5px !important;
+    margin-bottom: 5px;
+    z-index: 1;
+}
+.ql-container{
+    border: none !important;
+    border-radius: 3px;
+    background-color: #eee;
+    padding: 5px !important;
+}
+#editor-resizer .toolbar{
+ z-index: 1;
+}

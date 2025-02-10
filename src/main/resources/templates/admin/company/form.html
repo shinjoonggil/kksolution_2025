@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/admin/layout}">
+<th:block layout:fragment="plugin">
+    <!--  PostCode  -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="/assets/js/postcode.js"></script>
+    <!--  Editor  -->
+    <link href="https://cdn.jsdelivr.net/npm/quill@2/dist/quill.snow.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/quill@2/dist/quill.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quill-resize-image@1.0.5/dist/quill-resize-image.min.js"></script>
+    <script src="/assets/js/editor.js"></script>
+</th:block>
+
+<th:block layout:fragment="content">
+    <form th:action="@{/admin/company-form}" method="post">
+
+        <div class="tool-box">
+            <h2>업체 등록</h2>
+            <div class="buttons">
+                <a class="button" th:href="@{/admin/company}">목록</a>
+                <button type="submit" class="button primary">저장</button>
+            </div>
+        </div>
+        <article>
+            <section>
+                <fieldset>
+                    <legend>업체 정보</legend>
+                    <div class="form-control">
+                        <label for="name">
+                            <span class="label">업체명</span>
+                        </label>
+                        <input type="text" name="name" id="name" required/>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-control">
+                            <label for="businessNumber">
+                                <span class="label">사업자 등록번호</span>
+                            </label>
+                            <input type="text" name="businessNumber" id="businessNumber"/>
+                        </div>
+                        <div class="form-control">
+                            <label for="ownerName">
+                                <span class="label">대표명</span>
+                            </label>
+                            <input type="text" name="ownerName" id="ownerName"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-control">
+                            <label for="contact">
+                                <span class="label">대표 연락처</span>
+                            </label>
+                            <input type="tel" name="contact" id="contact"/>
+                        </div>
+                        <div class="form-control">
+                            <label for="email">
+                                <span class="label">이메일</span>
+                            </label>
+                            <input type="email" name="email" id="email"/>
+                        </div>
+                    </div>
+                    <div class="form-control">
+                        <label for="zipcode">
+                            <span class="label">우편번호</span>
+                        </label>
+                        <input type="text" name="zipcode" id="zipcode" size="small" readonly/>
+                        <button type="button" class="button primary"
+                                onclick="getAddressInfo('zipcode','address','addressDetail')">우편번호검색
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-control">
+                            <label for="address">
+                                <span class="label">주소</span>
+                            </label>
+                            <input type="text" name="address" id="address" readonly/>
+
+                        </div>
+                        <div class="form-control">
+                            <label for="addressDetail">
+                                <span class="label">상세 주소</span>
+                            </label>
+                            <input type="text" name="addressDetail" id="addressDetail"/>
+
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>담당자 정보</legend>
+                    <div class="form-control">
+                        <label for="agentName">
+                            <span class="label">담당자 성함</span>
+                        </label>
+                        <input type="text" name="agentName" id="agentName"/>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-control">
+                            <label for="agentContact">
+                                <span class="label">담당자 연락처</span>
+                            </label>
+                            <input type="tel" name="agentContact" id="agentContact"/>
+                        </div>
+                        <div class="form-control">
+                            <label for="agentEmail">
+                                <span class="label">담당자 이메일</span>
+                            </label>
+                            <input type="email" name="agentEmail" id="agentEmail"/>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>첨부 파일</legend>
+                </fieldset>
+                <fieldset>
+                    <legend>추가 내용</legend>
+                    <div class="editor" data-id="description"></div>
+
+                </fieldset>
+            </section>
+        </article>
+    </form>
+</th:block>
+</html>

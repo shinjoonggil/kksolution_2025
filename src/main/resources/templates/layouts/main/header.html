@@ -1,0 +1,16 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<header th:fragment="header">
+    <a th:class="logo" th:href="@{/}">
+        <img th:src="#{app.logo-url}" th:alt="logo_default"/>
+        <h1 hidden th:text="#{app.title}"/>
+    </a>
+    <span class="hambuger"></span>
+    <nav>
+        <ul th:if="${globalMenu.header != null}">
+            <li th:each="menu : ${globalMenu.header}">
+                <a th:text="#{${menu.label}}" th:href="@{${menu.path}}" />
+            </li>
+        </ul>
+    </nav>
+</header>
+</html>

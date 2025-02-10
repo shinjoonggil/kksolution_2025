@@ -1,0 +1,85 @@
+[
+  {
+    "label": "home",
+    "path": "",
+    "children" : null
+  },
+  {
+    "label": "company",
+    "path": null,
+    "children" : [
+      {"label": "list",
+        "path": "/company"
+      }
+    ]
+  },
+  {
+    "label": "config",
+    "path": null,
+    "children": [
+      {
+        "label": "config",
+        "path": "/config",
+        "children": null
+      }
+    ]
+  },
+  {
+    "label": "user",
+    "path": null,
+    "children": [
+      {
+        "label": "list",
+        "path": "/user",
+        "children": null
+      }
+    ]
+  },
+  {
+    "label": "board",
+    "path": null,
+    "children": [
+      {
+        "label": "list",
+        "path": "/board",
+        "children": null
+      }
+    ]
+  },
+  {
+    "label": "content",
+    "path": null,
+    "children": [
+      {
+        "label": "list",
+        "path": "/content",
+        "children": null
+      },
+      {
+        "label": "popup",
+        "path": "/popup",
+        "children": null
+      },
+      {
+        "label": "portfolio",
+        "path": "/portfolio",
+        "children": null
+      },
+      {
+        "label": "inquiry",
+        "path": "/inquiry",
+        "children": null
+      },
+      {
+        "label": "partner",
+        "path": "/partner",
+        "children": null
+      },
+      {
+        "label": "certificate",
+        "path": "/certificate",
+        "children": null
+      }
+    ]
+  }
+]

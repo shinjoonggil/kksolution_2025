@@ -1,0 +1,133 @@
+body {
+    margin: 0;
+    position: relative;
+    color: var(--color-text);
+}
+
+header {
+    width: 100%;
+    height: 70px;
+    position: sticky;
+    top: 0;
+    padding: 0 30px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header a.logo img {
+    height: 40px;
+
+}
+
+header nav > ul {
+    display: flex;
+}
+
+header nav > ul > li {
+    position: relative;
+}
+
+header nav > ul > li a {
+    font-weight: 500;
+    margin: 0 20px;
+    position: relative;
+}
+
+header nav > ul > li > ul {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+}
+
+header nav > ul > li:hover > ul {
+    display: block;
+}
+
+footer {
+
+
+}
+
+footer nav {
+    padding: 0 30px;
+
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+footer nav ul {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-size: 14px;
+    gap: 20px;
+    height: 38px;
+}
+
+footer nav ul li a {
+
+}
+
+footer address {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 10px 30px;
+    font-size: 14px;
+}
+
+footer address > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+footer address ul.company {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+footer address ul.company a{
+    line-height: 20px;
+}
+footer address ul.social {
+    display: flex;
+    justify-content: end;
+    gap: 1rem;
+}
+footer address ul.social img {
+    display: block;
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    object-position: center;
+    background-color: #ccc;
+    border-radius: 5px;
+}
+footer .copy {
+    /*padding: 10px 30px;*/
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+}
+main {
+    padding: 30px;
+    min-height: calc(100vh - 70px - 140px);
+    box-sizing: border-box;
+}
+nav.quick{
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+}
+nav.quick a img{
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    filter: var(--filter-light);
+}
+nav.quick a span{
+    display: none;
+}

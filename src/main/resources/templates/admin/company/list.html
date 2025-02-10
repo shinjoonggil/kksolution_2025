@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/admin/layout}">
+<th:block layout:fragment="content">
+  <div class="tool-box">
+    <h2>업체 목록</h2>
+    <div class="buttons">
+      <a th:href="@{/admin/company-form}">업체 등록</a>
+    </div>
+  </div>
+  <section style="background-color: azure">
+    CompanyList
+  </section>
+</th:block>
+</html>

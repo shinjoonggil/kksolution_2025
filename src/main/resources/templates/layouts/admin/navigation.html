@@ -1,0 +1,37 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<aside th:fragment="navigation">
+    <ul th:if="${adminMenu != null}">
+        <li th:each="menu : ${adminMenu}">
+            <a th:href="@{${'/admin' + menu.path}}"
+               th:if="${menu.path != null}"
+               th:class="menu-item"
+               th:classappend="${#strings.arraySplit(menuLabel, '.')[0] == menu.label} ? 'active'"
+            >
+                <div class="icon">
+                    <img th:src="@{${'/assets/icon/' + menu.label + '.svg'}}"/>
+                </div>
+                <span th:text="#{'admin.'+ ${menu.label}}"/>
+            </a>
+            <label th:if="${menu.children != null}"
+                   th:class="menu-item"
+                   th:classappend="${#strings.arraySplit(menuLabel, '.')[0] == menu.label} ? 'active'"
+            >
+                <input type="checkbox" hidden>
+                <div class="icon">
+                    <img th:src="@{${'/assets/icon/' + menu.label + '.svg'}}" th:class="icon"/>
+                </div>
+                <span th:text="#{'admin.'+ ${menu.label}}"/>
+            </label>
+            <ul th:if="${menu.children != null}">
+                <li th:each="childrenMenu : ${menu.children}"
+                    th:classappend="${#strings.arraySplit(menuLabel, '.')[0] == menu.label && #strings.arraySplit(menuLabel, '.')[1] == childrenMenu.label} ? 'active'"
+                >
+                    <a th:text="#{'admin.'+${menu.label}+'.'+${childrenMenu.label}}"
+                       th:href="|/admin${childrenMenu.path}|"></a>
+
+                </li>
+            </ul>
+        </li>
+    </ul>
+</aside>
+</html>

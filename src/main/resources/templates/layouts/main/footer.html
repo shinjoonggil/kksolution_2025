@@ -1,0 +1,57 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<footer th:fragment="footer">
+    <nav>
+        <ul th:if="${globalMenu.content != null}">
+            <li th:each="menu : ${globalMenu.content}">
+                <a th:text="#{${menu.label}}" th:href="@{${menu.path}}"></a>
+            </li>
+        </ul>
+<!--        <ul>-->
+<!--            <li>-->
+<!--                <a th:href="@{/content/privacy}" th:text="#{menu.privacy}"/>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a th:href="@{/content/email}" th:text="#{menu.email}"/>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a th:href="@{/content/terms}" th:text="#{menu.terms}"/>-->
+<!--            </li>-->
+<!--        </ul>-->
+    </nav>
+    <address>
+        <div class="left">
+            <ul class="company">
+                <li><a>051. 816. 1470.</a></li>
+                <li><a>cs@kksolution.co.kr</a></li>
+                <li><a>47229, 부산광역시 부산진구 양지로 14번길 10 2층</a></li>
+            </ul>
+        </div>
+        <div class="right">
+            <ul class="social">
+                <li>
+                    <a href="https://www.instagram.com/kksolution2024/" target="_blank">
+                        <img src="/assets/image/logo_default.png" alt="instagram"/>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://pf.kakao.com/_FwxdxmG" target="_blank">
+                        <img src="/assets/image/logo_default.png" alt="naver blog"/>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://blog.naver.com/kksolution-" target="_blank">
+                        <img src="/assets/image/logo_default.png" alt="kakao talk"/>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://youtube.com/channel/UCKFq-APPkRp__J9947mddqA?si=51M_m_zfAQr_0LpA" target="_blank">
+                        <img src="/assets/image/logo_default.png" alt="youtube"/>
+                    </a>
+                </li>
+            </ul>
+            <p class="copy">CopyRight &copy; 2024 KKSolution All Rights Reserved.</p>
+        </div>
+    </address>
+
+</footer>
+</html>
