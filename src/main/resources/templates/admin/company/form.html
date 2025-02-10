@@ -3,18 +3,20 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/admin/layout}">
 <th:block layout:fragment="plugin">
-    <!--  PostCode  -->
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script src="/assets/js/postcode.js"></script>
+
     <!--  Editor  -->
     <link href="https://cdn.jsdelivr.net/npm/quill@2/dist/quill.snow.css" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/quill@2/dist/quill.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/quill-resize-image@1.0.5/dist/quill-resize-image.min.js"></script>
     <script src="/assets/js/editor.js"></script>
+    <script src="/assets/js/file.js"></script>
+    <!--  PostCode  -->
+    <script defer src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="/assets/js/postcode.js"></script>
 </th:block>
 
 <th:block layout:fragment="content">
-    <form th:action="@{/admin/company-form}" method="post">
+    <form th:action="@{/admin/company-form}" method="post" enctype="multipart/form-data">
 
         <div class="tool-box">
             <h2>업체 등록</h2>
@@ -31,20 +33,20 @@
                         <label for="name">
                             <span class="label">업체명</span>
                         </label>
-                        <input type="text" name="name" id="name" required/>
+                        <input type="text" name="name" id="name" th:value="${item?.name}" required/>
                     </div>
                     <div class="form-group">
                         <div class="form-control">
                             <label for="businessNumber">
                                 <span class="label">사업자 등록번호</span>
                             </label>
-                            <input type="text" name="businessNumber" id="businessNumber"/>
+                            <input type="text" name="businessNumber" id="businessNumber" th:value="${item?.businessNumber}"/>
                         </div>
                         <div class="form-control">
                             <label for="ownerName">
                                 <span class="label">대표명</span>
                             </label>
-                            <input type="text" name="ownerName" id="ownerName"/>
+                            <input type="text" name="ownerName" id="ownerName" th:value="${item?.ownerName}"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -52,20 +54,20 @@
                             <label for="contact">
                                 <span class="label">대표 연락처</span>
                             </label>
-                            <input type="tel" name="contact" id="contact"/>
+                            <input type="tel" name="contact" id="contact" th:value="${item?.contact}"/>
                         </div>
                         <div class="form-control">
                             <label for="email">
                                 <span class="label">이메일</span>
                             </label>
-                            <input type="email" name="email" id="email"/>
+                            <input type="email" name="email" id="email" th:value="${item?.email}"/>
                         </div>
                     </div>
                     <div class="form-control">
                         <label for="zipcode">
                             <span class="label">우편번호</span>
                         </label>
-                        <input type="text" name="zipcode" id="zipcode" size="small" readonly/>
+                        <input type="text" name="zipcode" id="zipcode" th:value="${item?.zipcode}" size="small" readonly/>
                         <button type="button" class="button primary"
                                 onclick="getAddressInfo('zipcode','address','addressDetail')">우편번호검색
                         </button>
@@ -75,14 +77,14 @@
                             <label for="address">
                                 <span class="label">주소</span>
                             </label>
-                            <input type="text" name="address" id="address" readonly/>
+                            <input type="text" name="address" id="address" th:value="${item?.address}" readonly/>
 
                         </div>
                         <div class="form-control">
                             <label for="addressDetail">
                                 <span class="label">상세 주소</span>
                             </label>
-                            <input type="text" name="addressDetail" id="addressDetail"/>
+                            <input type="text" name="addressDetail" id="addressDetail" th:value="${item?.addressDetail}"/>
 
                         </div>
                     </div>
@@ -93,33 +95,34 @@
                         <label for="agentName">
                             <span class="label">담당자 성함</span>
                         </label>
-                        <input type="text" name="agentName" id="agentName"/>
+                        <input type="text" name="agentName" id="agentName" th:value="${item?.agentName}"/>
                     </div>
                     <div class="form-group">
                         <div class="form-control">
                             <label for="agentContact">
                                 <span class="label">담당자 연락처</span>
                             </label>
-                            <input type="tel" name="agentContact" id="agentContact"/>
+                            <input type="tel" name="agentContact" id="agentContact" th:value="${item?.agentContact}"/>
                         </div>
                         <div class="form-control">
                             <label for="agentEmail">
                                 <span class="label">담당자 이메일</span>
                             </label>
-                            <input type="email" name="agentEmail" id="agentEmail"/>
+                            <input type="email" name="agentEmail" id="agentEmail" th:value="${item?.agentEmail}"/>
                         </div>
                     </div>
                 </fieldset>
                 <fieldset>
                     <legend>첨부 파일</legend>
+                    <div class="file-uploader" data-name="uploadFiles" data-id="attach"></div>
                 </fieldset>
                 <fieldset>
                     <legend>추가 내용</legend>
-                    <div class="editor" data-id="description"></div>
-
+                    <div class="editor" data-id="description" th:text="${item?.description}"></div>
                 </fieldset>
             </section>
         </article>
+        <input type="hidden" name="id" th:value="${item?.id}"/>
     </form>
 </th:block>
 </html>

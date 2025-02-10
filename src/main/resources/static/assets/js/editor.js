@@ -4,7 +4,13 @@ window.addEventListener('load', () => {
     document.querySelectorAll('form').forEach(form=>{
         form.querySelectorAll('.editor').forEach(el => {
 
-
+            const initContent =el.textContent
+            el.textContent=''
+            const {id}=el.dataset
+            const input = document.createElement('input')
+            input.type='hidden'
+            input.name=id
+            form.appendChild(input)
 
             const quill = new Quill(el, {
                 modules: {
@@ -13,13 +19,10 @@ window.addEventListener('load', () => {
                 },
                 theme: 'snow'
             })
+            quill.root.innerHTML=initContent
             form.addEventListener('submit',e=>{
-                const {id}=el.dataset
-                const input = document.createElement('input')
-                input.type='hidden'
-                input.name=id
-                input.value=quill.getContents()
-                form.appendChild(input)
+                input.value=quill.root.innerHTML;
+
             })
         })
     })

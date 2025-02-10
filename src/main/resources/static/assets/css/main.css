@@ -2,6 +2,7 @@ body {
     margin: 0;
     position: relative;
     color: var(--color-text);
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 header {
@@ -23,6 +24,7 @@ header a.logo img {
 
 header nav > ul {
     display: flex;
+    text-transform : capitalize;
 }
 
 header nav > ul > li {
@@ -53,9 +55,9 @@ footer {
 
 footer nav {
     padding: 0 30px;
-
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
+    text-transform : capitalize;
 }
 
 footer nav ul {
@@ -130,4 +132,11 @@ nav.quick a img{
 }
 nav.quick a span{
     display: none;
+}
+
+
+/*Message Toast Custom*/
+.notyf__wrapper{
+    padding: 17px 0;
+    color: var(--color-text);
 }

@@ -16,10 +16,10 @@
             // document.body.classList.toggle('hide')
             if(document.body.classList.contains('hide')){
                 document.body.classList.remove('hide')
-                document.cookie = `aside-hide=false; path=/admin; expires=90000000`;
+                document.cookie = `menu-status=; path=/admin; expires=90000000`;
             }else{
                 document.body.classList.add('hide')
-                document.cookie = `aside-hide=true; path=/admin; expires=90000000`;
+                document.cookie = `menu-status=hide; path=/admin; expires=90000000`;
             }
 
 

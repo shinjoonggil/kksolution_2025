@@ -8,7 +8,7 @@
                th:classappend="${#strings.arraySplit(menuLabel, '.')[0] == menu.label} ? 'active'"
             >
                 <div class="icon">
-                    <img th:src="@{${'/assets/icon/' + menu.label + '.svg'}}"/>
+                    <img th:src="@{${'/assets/icon_svg/' + menu.label + '.svg'}}"/>
                 </div>
                 <span th:text="#{'admin.'+ ${menu.label}}"/>
             </a>
@@ -18,7 +18,7 @@
             >
                 <input type="checkbox" hidden>
                 <div class="icon">
-                    <img th:src="@{${'/assets/icon/' + menu.label + '.svg'}}" th:class="icon"/>
+                    <img th:src="@{${'/assets/icon_svg/' + menu.label + '.svg'}}" th:class="icon"/>
                 </div>
                 <span th:text="#{'admin.'+ ${menu.label}}"/>
             </label>

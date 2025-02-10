@@ -2,43 +2,104 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
-    <head>
-        <title th:text="${title==null ? '부산홈페이지제작 케이투솔루션' : title + ' | 부산홈페이지제작 케이투솔루션' }"/>
+<head>
+    <title th:text="${title==null ? '부산홈페이지제작 케이투솔루션' : title + ' | 부산홈페이지제작 케이투솔루션' }"/>
 
 
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <link rel="canonical" href="https://kksolution.co.kr" />
-        <link rel="alternate" href="https://kksolution.co.kr" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="canonical" href="https://kksolution.co.kr"/>
+    <link rel="alternate" href="https://kksolution.co.kr"/>
 
-        <meta property="og:url" content="https://kksolution.co.kr" />
-        <meta property="og:title" content="부산홈페이지제작 케이투솔루션" />
-        <meta property="og:description" content="부산 부산진구 홈페이지제작 전문업체 ,케이투솔루션" />
-        <meta property="og:site_name" content="부산홈페이지제작 케이투솔루션" />
-        <meta property="og:image" th:attr="content=@{/assets/image/logo.png}" />
-        <meta property="og:type" content="website" />
-
-
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-<style>
-    body {
-        font-family: 'Noto Sans KR', sans-serif;
-    }
-</style>
+    <meta property="og:url" content="https://kksolution.co.kr"/>
+    <meta property="og:title" content="부산홈페이지제작 케이투솔루션"/>
+    <meta property="og:description" content="부산 부산진구 홈페이지제작 전문업체 ,케이투솔루션"/>
+    <meta property="og:site_name" content="부산홈페이지제작 케이투솔루션"/>
+    <meta property="og:image" th:attr="content=@{/assets/image/logo.png}"/>
+    <meta property="og:type" content="website"/>
 
 
-        <link rel="stylesheet" th:href="@{/assets/css/reset.css}">
-        <link rel="stylesheet" th:href="@{/assets/css/root.css}">
-        <link rel="stylesheet" th:href="@{/assets/css/style.css}">
-        <link rel="stylesheet" th:href="@{/assets/css/main.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+          rel="stylesheet">
+
+    <th:block th:if="${message != null}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    </th:block>
 
 
-    </head>
-    <body>
-        <th:block th:replace="~{layouts/main/header :: header}"/>
-        <main><th:block layout:fragment="content"></th:block></main>
-        <th:block th:replace="~{layouts/main/footer :: footer}"/>
-        <th:block th:replace="~{layouts/main/navigation :: navigation}"/>
-    </body>
+
+    <link rel="stylesheet" th:href="@{/assets/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/root.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/main.css}">
+
+
+</head>
+<body>
+<th:block th:replace="~{layouts/main/header :: header}"/>
+<main>
+    <th:block layout:fragment="content"></th:block>
+</main>
+<th:block th:replace="~{layouts/main/footer :: footer}"/>
+<th:block th:replace="~{layouts/main/navigation :: navigation}"/>
+<th:block th:if="${message != null}">
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        const n = new Notyf({
+            duration:100000,
+            position: {
+                x: 'center',
+                y: 'top'
+            },
+            types: [
+                {
+                    type:'SUCCESS',
+                    background: 'green'
+                },
+                {
+                    type: 'WARN',
+                    background: 'orange',
+                    icon: {
+                        className: 'material-icons',
+                        tagName: 'i',
+                        text: 'warning'
+                    }
+                },
+                {
+                    type: 'ERROR',
+                    background: 'indianred',
+                    duration: 2000,
+                    dismissible: true,
+                    text: 'warning'
+
+                },
+                {
+                    type: 'INFO',
+                    background: 'blue',
+                    icon: false
+                },
+                {
+                    type: 'DEFAULT',
+                    background: '#eee',
+                    icon: false,
+                    duration: 30000000,
+                    dismissible: true,
+                    text:'#000'
+
+                }
+            ]
+        })
+        window.addEventListener('load',_=>{
+            n.open({
+                type: [[${message.type}]],
+                message: [[${message.message}]]
+
+            })
+        })
+        /*]]>*/
+    </script>
+</th:block>
+</body>
 </html>

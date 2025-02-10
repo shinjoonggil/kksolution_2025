@@ -21,9 +21,10 @@
     <address>
         <div class="left">
             <ul class="company">
-                <li><a>051. 816. 1470.</a></li>
-                <li><a>cs@kksolution.co.kr</a></li>
-                <li><a>47229, 부산광역시 부산진구 양지로 14번길 10 2층</a></li>
+                <li><a th:href="'tel:' + #{config.contact}" th:text="#{config.contact}" target="_blank"></a></li>
+                <li><a th:href="'mailto:' + #{config.email} " th:text="#{config.email}" target="_blank"></a></li>
+                <li><a th:href="'https://map.naver.com/v5/search/' + #{config.address}" th:text="#{config.address}" target="_blank"></a></li>
+
             </ul>
         </div>
         <div class="right">

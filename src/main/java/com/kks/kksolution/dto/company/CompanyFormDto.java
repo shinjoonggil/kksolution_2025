@@ -1,7 +1,9 @@
 package com.kks.kksolution.dto.company;
 
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -26,5 +28,6 @@ public class CompanyFormDto {
     private String agentContact;
     private String agentEmail;
 
-    private String content;
+
+    private String description;
 }

@@ -8,6 +8,8 @@ import com.kks.kksolution.vo.menu.MenuVO;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.util.AntPathMatcher;
@@ -23,6 +25,7 @@ import java.util.List;
 public class GlobalMenuAdvice {
     private final static String GLOBAL_MENU_ATTRIBUTE_KEY = "globalMenu";
     private final static String ADMIN_MENU_ATTRIBUTE_KEY = "adminMenu";
+    private static final Logger log = LoggerFactory.getLogger(GlobalMenuAdvice.class);
     private final MenuRepository menuRepository;
     private final HttpServletRequest request;
 
@@ -64,7 +67,7 @@ public class GlobalMenuAdvice {
         return null;
     }
 
-    @ModelAttribute("menu_hide")
+    @ModelAttribute("menuHide")
     public String bodyClass(HttpServletRequest request) {
         // 요청에서 모든 쿠키 가져오기
         Cookie[] cookies = request.getCookies();
@@ -72,8 +75,8 @@ public class GlobalMenuAdvice {
         // 쿠키 배열을 순회하면서 aside-hide 쿠키 찾기
         if (cookies != null) {
             for (Cookie cookie : cookies) {
-                if ("aside-hide".equals(cookie.getName()) && "true".equals(cookie.getValue())) {
-                    return "hide";
+                if(cookie.getName().equals("menu-status")) {
+                    return cookie.getValue();
                 }
             }
         }

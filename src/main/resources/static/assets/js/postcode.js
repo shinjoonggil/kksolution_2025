@@ -22,7 +22,7 @@ function getAddressInfo(zipCodeId, addressId,focusId) {
             queryTextColor: "#2e455c", //검색창 글자색
             postcodeTextColor: "#fff", //우편번호 글자색
             emphTextColor: "#2f5ee7", //강조 글자색
-            outlineColor: "#2e455c" //테두리
+            outlineColor: "#fff" //테두리
         },
         oncomplete: (data) => {
             if (zipcodeElement) zipcodeElement.value = data.zonecode

@@ -1,6 +1,7 @@
 package com.kks.kksolution.config;
 
 import com.kks.kksolution.service.AccountService;
+import com.kks.kksolution.vo.common.MessageVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,9 +23,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
-        for (String permittedPath : permittedPaths) {
-            log.info(permittedPath);
-        }
+
         return httpSecurity
 //                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
@@ -39,18 +38,33 @@ public class SecurityConfig {
                                 .usernameParameter("accountId")
                                 .passwordParameter("accountPassword")
                                 .successHandler((request, response, authentication) -> {
+                                    request.getSession().setAttribute("message" , MessageVO.SUCCESS("SUCCSS!!"));
+                                    log.info(authentication.getPrincipal().toString());
+                                    log.info(authentication.getCredentials().toString());
+                                    log.info(authentication.getDetails().toString());
+                                    log.info(authentication.getAuthorities().toString());
+                                    log.info(authentication.getName().toString());
+
                                     response.sendRedirect("/account/signIn?error=none");
                                 })
                                 .failureHandler((request, response, exception) -> {
-                                    log.info(exception.getMessage());
-                                    response.sendRedirect("/account/signIn?error=");
+                                    request.getSession().setAttribute("message" , MessageVO.ERROR("failureHandler!!"));
+                                    response.sendRedirect("/account/signIn?error=fuck+you");
                                 })
-//                        .successForwardUrl("/?SUCCESSFORWARDURL")
-//                        .failureForwardUrl("/?FAILUREFORWARDURL")
-
                                 .defaultSuccessUrl("/", true)
                                 .permitAll()
                 )
+                .exceptionHandling(httpSecurityExceptionHandlingConfigurer -> {
+                    httpSecurityExceptionHandlingConfigurer
+                            .accessDeniedHandler((request, response, exception) -> {
+                                request.getSession().setAttribute("message" , MessageVO.ERROR("accessDeniedHandler!!"));
+                                response.sendRedirect("/");
+                            })
+                            .authenticationEntryPoint((request, response, exception) -> {
+                                request.getSession().setAttribute("message" , MessageVO.ERROR("authenticationEntryPoint!!"));
+                                response.sendRedirect("/account/signIn?error=entry");
+                            });
+                })
                 .logout(logout -> logout
                         .logoutUrl("/account/signOut")
                         .logoutSuccessUrl("/")
