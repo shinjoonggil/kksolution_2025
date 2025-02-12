@@ -7,9 +7,9 @@
 </th:block>
 <th:block layout:fragment="content">
     <div class="tool-box">
-        <h2>내용 목록</h2>
+        <h2 th:text="#{popup.subject} + ' ' + #{form.list}"></h2>
         <div class="buttons">
-            <a class="button primary" th:href="@{/admin/content-form}">신규 내용</a>
+            <a class="button primary" th:href="@{/admin/popup-form}" th:text="#{popup.subject} + ' ' + #{form.register}"></a>
         </div>
     </div>
     <article>
@@ -20,12 +20,8 @@
                     <tr>
                         <th class="checks"><label for="all"><input type="checkbox" id="all"/></label></th>
                         <th th:class="${@templateHelper.getSortClass('title')}"><a
-                                th:href="${@templateHelper.getSortLink('title')}" th:text="#{content.title}"></a></th>
-                        <th th:class="${@templateHelper.getSortClass('path')}"><a
-                                th:href="${@templateHelper.getSortLink('path')}" th:text="#{content.path}"></a></th>
-                        <th th:class="${@templateHelper.getSortClass('createBy.name')}"><a
-                                th:href="${@templateHelper.getSortLink('createBy.name')}"
-                                th:text="#{content.createBy}"></a></th>
+                                th:href="${@templateHelper.getSortLink('title')}" th:text="#{popup.title}"></a></th>
+
                         <th class="actions"><span th:text="#{list.actions}"></span></th>
                     </tr>
                     </thead>
@@ -35,18 +31,12 @@
                     </tr>
                     <tr th:each="item : ${items}">
                         <td class="checks"><label><input type="checkbox" th:name="${'id['+item.id+']'}"/></label></td>
+
                         <td th:text="${item.title}"></td>
-                        <td><a class="href" th:href="@{'/content/'+${item.path}}" th:text="${item.path}"
-                               target="_blank"></a></td>
-                        <td th:text="${item.createBy?.name}"></td>
+
                         <td class="actions">
-                            <a th:href="@{'/admin/content-form/' + ${item.id}}" class="edit" th:tooltip="#{tip.edit}"></a>
-<!--                            <a th:href="@{'/admin/content-delete/' + ${item.id}}" class="delete" th:tooltip="#{tip.delete}"></a>-->
-                            <button class="delete" th:tooltip="#{tip.delete}" th:data-id="${item.id}" data-action="/admin/content-delete" data-type="delete"></button>
-
-
-
-
+                            <a th:href="@{'/admin/popup-form/' + ${item.id}}" class="edit" th:tooltip="#{tip.edit}"></a>
+                            <button class="delete" th:tooltip="#{tip.delete}" th:data-id="${item.id}" data-action="/admin/popup-delete" data-type="delete"></button>
                         </td>
                     </tr>
                     </tbody>
@@ -55,8 +45,8 @@
             <th:block th:replace="~{layouts/pagination :: pagination(${items}, ${path})}"/>
         </section>
     </article>
-    <!--    <div style="position: fixed;left: 0;top: 0;width: 100vw;height: 100vh;background-color: #00000070;z-index: 1001;display: flex;justify-content: center;align-items: center;">-->
-    <!--        <div style="background-color: #fff;border-radius: 3px;display: flex;justify-content: start;align-items: center;flex-direction: column;gap: 1rem;padding: 30px;box-sizing: border-box">-->
+    <!--    <div style="position: fixed;left: 0;top: 0;width: 100vw;height: 100vh;background-color: #00000070;z-index: 1001;display: flex;justify-popup: center;align-items: center;">-->
+    <!--        <div style="background-color: #fff;border-radius: 3px;display: flex;justify-popup: start;align-items: center;flex-direction: column;gap: 1rem;padding: 30px;box-sizing: border-box">-->
     <!--            <h3 style="font-size: 24px;font-weight: 700;">내용 삭제</h3>-->
     <!--            <p>정말 내용을 삭제 하시겠습니까?</p>-->
     <!--            <p>삭제하시면 복구 하실 수 없습니다.</p>-->

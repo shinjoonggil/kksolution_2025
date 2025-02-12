@@ -23,7 +23,7 @@ public class Content {
     private String title;
     @Column(unique = true)
     private String path;
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "MEDIUMTEXT")
     private String content;
 
     @ManyToOne

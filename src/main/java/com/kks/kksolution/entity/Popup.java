@@ -31,7 +31,7 @@ public class Popup {
     @ManyToOne
     private User createBy;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "MEDIUMTEXT")
     private String description;
     @CreationTimestamp
     private LocalDateTime createAt;

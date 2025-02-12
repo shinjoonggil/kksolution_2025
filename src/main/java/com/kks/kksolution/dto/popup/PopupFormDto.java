@@ -1,16 +1,13 @@
 package com.kks.kksolution.dto.popup;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
-@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@Getter
+@Setter
 public class PopupFormDto {
     private UUID id;
     private String title;

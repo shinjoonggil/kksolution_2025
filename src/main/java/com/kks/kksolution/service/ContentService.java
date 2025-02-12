@@ -71,7 +71,7 @@ public class ContentService {
             return;
         }
         contentRepository.deleteById(form.getId());
-        session.setAttribute("message", MessageVO.SUCCESS("common.success.delete"));
+        session.setAttribute("message", MessageVO.SUCCESS("data.success.delete"));
 
     }
     private Content getContentById(UUID id) {

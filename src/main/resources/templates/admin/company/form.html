@@ -8,11 +8,11 @@
     <link href="https://cdn.jsdelivr.net/npm/quill@2/dist/quill.snow.css" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/quill@2/dist/quill.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/quill-resize-image@1.0.5/dist/quill-resize-image.min.js"></script>
-    <script src="/assets/js/editor.js"></script>
-    <script src="/assets/js/file.js"></script>
+    <script th:src="|${url}/assets/js/editor.js|"></script>
+    <script th:src="|${url}/assets/js/file.js|"></script>
     <!--  PostCode  -->
     <script async src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script src="/assets/js/postcode.js"></script>
+    <script th:src="|${url}/assets/js/postcode.js|"></script>
 </th:block>
 
 <th:block layout:fragment="content">

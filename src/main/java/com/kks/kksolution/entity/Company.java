@@ -33,7 +33,7 @@ public class Company {
     private String agentContact;
     private String agentEmail;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "MEDIUMTEXT")
     private String description;
 
     @CreationTimestamp

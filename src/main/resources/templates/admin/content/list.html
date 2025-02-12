@@ -31,7 +31,7 @@
                     </thead>
                     <tbody>
                     <tr th:if="${items.isEmpty()}" class="empty">
-                        <td th:text="#{list.empty}" colspan="4"></td>
+                        <td th:text="#{list.empty}" colspan="5"></td>
                     </tr>
                     <tr th:each="item : ${items}">
                         <td class="checks"><label><input type="checkbox" th:name="${'id['+item.id+']'}"/></label></td>

@@ -107,11 +107,18 @@ window.addEventListener('DOMContentLoaded', e => {
                             }else{
                                 source=document.createElement('iframe')
                                 source.src=`https://docs.google.com/gview?url=${file.url}&embedded=true`
+
                             }
                             if(source){
                                 const modalContent = document.createElement('div')
                                 modalContent.classList.add('modal-content')
+                                modalContent.classList.add('loading')
                                 modalContent.appendChild(source)
+
+                                source.addEventListener('load',e=>{
+                                    modalContent.classList.remove('loading')
+                                })
+
                                 const modal = document.createElement('div')
                                 modal.classList.add('modal')
                                 const modalContainer = document.createElement('div')

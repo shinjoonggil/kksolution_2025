@@ -36,6 +36,12 @@ public class GlobalModelAdvice {
         }
         return null;
     }
+    @ModelAttribute("url")
+    public String getRequest(){
+        String url = request.getRequestURL().toString();
+        String uri = request.getRequestURI();
+        return url.substring(0, url.length() - uri.length());
+    }
 
     private Boolean isMainRun() {
         String uri = request.getRequestURI();

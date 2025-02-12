@@ -28,16 +28,14 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <script th:src="|${url}/assets/js/validator.js|"></script>
+    <link rel="stylesheet" th:href="|${url}/assets/css/reset.css|">
+    <link rel="stylesheet" th:href="|${url}/assets/css/root.css|">
+    <link rel="stylesheet" th:href="|${url}/assets/css/style.css|">
+    <link rel="stylesheet" th:href="|${url}/assets/css/admin.css|">
 
-    <link rel="stylesheet" th:href="@{/assets/css/reset.css}">
-    <link rel="stylesheet" th:href="@{/assets/css/root.css}">
-    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
-    <link rel="stylesheet" th:href="@{/assets/css/admin.css}">
-
-    <script src="/assets/js/validator.js"></script>
-    <script src="/assets/js/admin.js"></script>
-
-    <meta name="_csrf">
+    <script th:src="|${url}/assets/js/validator.js|"></script>
+    <script th:src="|${url}/assets/js/admin.js|"></script>
 </head>
 <body th:class="loading" th:classappend="${menuHide}">
 <th:block th:replace="~{layouts/admin/header :: header}"/>

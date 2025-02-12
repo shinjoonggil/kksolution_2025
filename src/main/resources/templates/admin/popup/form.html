@@ -7,16 +7,21 @@
     <link href="https://cdn.jsdelivr.net/npm/quill@2/dist/quill.snow.css" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/quill@2/dist/quill.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/quill-resize-image@1.0.5/dist/quill-resize-image.min.js"></script>
-    <script src="/assets/js/editor.js"></script>
+    <script th:src="|${url}/assets/js/editor.js|"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
+    <script th:src="|${url}/assets/js/datepicker.js|"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </th:block>
 
 <th:block layout:fragment="content">
-    <form th:action="@{/admin/content-form}" method="post">
+    <form th:action="@{/admin/popup-form}" method="post">
         <div class="tool-box">
-            <h2 th:text="#{content.subject} + ' ' + #{form.register}"></h2>
+            <h2 th:text="#{popup.subject} + ' ' + #{form.register}"></h2>
 
             <div class="buttons">
-                <a class="button" th:href="@{/admin/content}" th:text="#{form.list}"></a>
+                <a class="button" th:href="@{/admin/popup}" th:text="#{form.list}"></a>
                 <button type="submit" class="button primary" th:text="#{form.save}"></button>
             </div>
         </div>
@@ -26,22 +31,33 @@
                     <legend th:text="#{form.content}"></legend>
                     <div class="form-control">
                         <label for="title">
-                            <span class="label" th:text="#{content.title}"></span>
+                            <span class="label" th:text="#{popup.title}"></span>
                         </label>
                         <input type="text" name="title" id="title" th:value="${item?.title}" required/>
                     </div>
+
                     <div class="form-control">
-                        <label for="path">
-                            <span class="label" th:text="#{content.path}"></span>
+                        <label for="url">
+                            <span class="label" th:text="#{popup.url}"></span>
                         </label>
-                        <input type="text" name="path" id="path" th:value="${item?.path}" required maxlength="10"/>
+                        <input type="text" name="url" id="url" th:value="${item?.url}" />
                     </div>
-                    <div class="form-control">
-                        <label for="content">
-                            <span class="label" th:text="#{content.content}"></span>
-                        </label>
-                        <div class="editor" id="content" data-id="content" th:text="${item?.content}"></div>
+                    <div class="form-group">
+                        <div class="form-control">
+                            <label for="startAt">
+                                <span class="label" th:text="#{popup.start}"></span>
+                            </label>
+                            <input type="text" name="startAt" id="startAt" th:value="${item?.startAt}" data-type="date-picker" required/>
+                        </div>
+                        <div class="form-control">
+                            <label for="endAt">
+                                <span class="label" th:text="#{popup.end}"></span>
+                            </label>
+                            <input type="text" name="endAt" id="endAt" th:value="${item?.endAt}" data-type="date-picker" required/>
+                        </div>
                     </div>
+
+
                 </fieldset>
             </section>
         </article>

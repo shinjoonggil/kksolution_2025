@@ -22,11 +22,11 @@ public class CompanyService {
     private final HttpServletRequest request;
 
     public UUID companyProcess(CompanyFormDto form) {
-        String message = "company.success.create";
+        String message = "company.success.update";
         Company company = companyRepository.findById(form.getId()).orElse(null);
         if (company == null) {//create
             company = Company.builder().id(form.getId()).createIp(request.getRemoteAddr()).build();
-            message = "company.success.update";
+            message = "company.success.create";
         }
 
         company.setName(form.getName().trim());

@@ -67,20 +67,20 @@ public class AdminController {
 
     @GetMapping("content")
     public String getContentList(Model model, ContentFilterDto filter) {
-        model.addAttribute("menuLabel", "content.list");
+        model.addAttribute("menuLabel", "content.content");
         model.addAttribute("path","/admin/content");
         model.addAttribute("items", contentService.getContents(filter));
         return "admin/content/list";
     }
     @GetMapping("content-form")
     public String createContentForm(Model model) {
-        model.addAttribute("menuLabel", "content.list");
+        model.addAttribute("menuLabel", "content.content");
         model.addAttribute("item", contentService.getEmptyContent());
         return "admin/content/form";
     }
     @GetMapping("content-form/{id}")
     public String updateContentForm(Model model , @PathVariable UUID id) {
-        model.addAttribute("menuLabel", "content.list");
+        model.addAttribute("menuLabel", "content.content");
         model.addAttribute("item", contentService.getContent(id));
         return "admin/content/form";
     }
@@ -102,20 +102,20 @@ public class AdminController {
 
     @GetMapping("popup")
     public String getPopupList(Model model, PopUpFilterDto filter) {
-        model.addAttribute("menuLabel", "popup.list");
+        model.addAttribute("menuLabel", "content.popup");
         model.addAttribute("path","/admin/popup");
         model.addAttribute("items", popupService.getPageList(filter));
-        return "admin/content/list";
+        return "admin/popup/list";
     }
     @GetMapping("popup-form")
     public String createPopupForm(Model model) {
-        model.addAttribute("menuLabel", "popup.list");
+        model.addAttribute("menuLabel", "content.popup");
         model.addAttribute("item", popupService.getEmptyData());
         return "admin/popup/form";
     }
     @GetMapping("popup-form/{id}")
     public String updatePopupForm(Model model , @PathVariable UUID id) {
-        model.addAttribute("menuLabel", "popup.list");
+        model.addAttribute("menuLabel", "content.popup");
         model.addAttribute("item", popupService.getData(id));
         return "admin/popup/form";
     }
