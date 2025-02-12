@@ -10,21 +10,26 @@ a:hover, a:active {
 }
 
 :root {
-    --color-primary : #2f5ee7;
-    --color-normal : #a9a9a9;
+    --color-primary: #2f5ee7;
+    --color-normal: #a9a9a9;
     --color-text: #2e455c;
-    --color-white:#fff;
-    --color-light:#f4ede8;
-    --color-background: #f1f1f1;
-    --filter-light:invert(98%) sepia(4%) saturate(708%) hue-rotate(312deg) brightness(100%) contrast(92%);
+    --color-white: #fff;
+    --color-light: #f4ede8;
+    --color-background: #f4f4f4;
+    --color-secondary: #2e455c;
+    --color-active: #dee6ff;
+    --color-disabled: #ddd;
+    --color-error: #ff6666;
+    --color-info: #61a1f1;
+    --filter-light: invert(98%) sepia(4%) saturate(708%) hue-rotate(312deg) brightness(100%) contrast(92%);
     --filter-white: invert(100%) sepia(0%) saturate(10%) hue-rotate(153deg) brightness(103%) contrast(101%);
 }
-
 
 
 [tooltip] {
     position: relative;
 }
+
 [tooltip]::before,
 [tooltip]::after {
     text-transform: none;
@@ -36,11 +41,13 @@ a:hover, a:active {
     display: none;
     opacity: 0;
 }
+
 [tooltip]::before {
     content: '';
     border: 5px solid transparent;
     z-index: 1001;
 }
+
 [tooltip]::after {
     content: attr(tooltip);
     font-family: Helvetica, sans-serif;
@@ -57,10 +64,12 @@ a:hover, a:active {
     color: #fff;
     z-index: 1000; /* absurdity 2 */
 }
+
 [tooltip]:hover::before,
 [tooltip]:hover::after {
     display: block;
 }
+
 [tooltip='']::before,
 [tooltip='']::after {
     display: none !important;
@@ -73,10 +82,12 @@ a:hover, a:active {
     border-bottom-width: 0;
     border-top-color: #333;
 }
+
 [tooltip]:not([flow])::after,
 [tooltip][flow^="up"]::after {
     bottom: calc(100% + 5px);
 }
+
 [tooltip]:not([flow])::before,
 [tooltip]:not([flow])::after,
 [tooltip][flow^="up"]::before,
@@ -91,9 +102,11 @@ a:hover, a:active {
     border-top-width: 0;
     border-bottom-color: #333;
 }
+
 [tooltip][flow^="down"]::after {
     top: calc(100% + 5px);
 }
+
 [tooltip][flow^="down"]::before,
 [tooltip][flow^="down"]::after {
     left: 50%;
@@ -108,6 +121,7 @@ a:hover, a:active {
     left: calc(0em - 5px);
     transform: translate(-.5em, -50%);
 }
+
 [tooltip][flow^="left"]::after {
     top: 50%;
     right: calc(100% + 5px);
@@ -122,6 +136,7 @@ a:hover, a:active {
     right: calc(0em - 5px);
     transform: translate(.5em, -50%);
 }
+
 [tooltip][flow^="right"]::after {
     top: 50%;
     left: calc(100% + 5px);

@@ -1,0 +1,7 @@
+/*Message Toast Custom*/
+.notyf__wrapper{
+    font-size: 14px;
+    padding: 10px 0;
+    color: var(--color-light);
+    white-space: pre-line;
+}

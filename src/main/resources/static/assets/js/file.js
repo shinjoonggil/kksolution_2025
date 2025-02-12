@@ -1,9 +1,12 @@
-window.addEventListener('load', e => {
+const UP_FILE_PATH = '/upload'
+const LOADING_CLASS_NAME = 'loading'
+window.addEventListener('DOMContentLoaded', e => {
     document.querySelectorAll('form').forEach(form => {
-
+        // const csrfToken = form._csrf.value
         form.querySelectorAll('.file-uploader').forEach(el => {
-            const dataTransfer = new DataTransfer()  // 새로운 DataTransfer 객체
-            const {id, accept, name, url} = el.dataset
+
+            const {id, accept, name} = el.dataset
+
             const input = document.createElement('input')
             input.id = id
             input.name = name
@@ -13,50 +16,54 @@ window.addEventListener('load', e => {
             input.hidden = true
             form.appendChild(input)
 
-            el.addEventListener('click', e => {
-                input.click()
-            })
-            // 드래그 앤 드롭 기능 추가
-            el.addEventListener('dragover', (e) => {
-                e.preventDefault()
-                el.style.border = '2px dashed #007bff' // 스타일 변경
-            })
+            el.classList.add(LOADING_CLASS_NAME)
+            fetch(`${UP_FILE_PATH}/${id}`)
+                .then(response => {
+                    return response.json()
+                })
+                .then(json => set(json))
+                .finally(() => el.classList.remove(LOADING_CLASS_NAME))
 
-            el.addEventListener('dragleave', () => {
-                el.style.border = null
-            })
 
-            el.addEventListener('drop', (e) => {
-                e.preventDefault()
-                const {files} = e.dataTransfer
-                el.style.border = null
+            const uploadHandler = (files) => {
+                let fileSize = 0;
+                const form = new FormData()
                 for (let index = 0; index < files.length; index++) {
                     const file = files[index]
-                    dataTransfer.items.add(file)
+                    fileSize += file.size
+                    form.append("uploadFiles", file)
                 }
-                set()
+                el.classList.add(LOADING_CLASS_NAME)
+                fetch(`${UP_FILE_PATH}/${id}`, {
+                    method: 'POST',
+                    body: form,
+                }).then(response => {
+                    return response.json()
+                })
+                    .then(json => set(json))
+                    .finally(() => el.classList.remove(LOADING_CLASS_NAME))
+
+            }
+            el.addEventListener('click', () => input.click())
+            el.addEventListener('dragover', (e) => {
+                e.preventDefault()
+                el.style.border = '2px dashed #007bff'
+            })
+            el.addEventListener('dragleave', () => el.style.border = null)
+            el.addEventListener('drop', (e) => {
+                e.preventDefault()
+                el.style.border = null
+                const {files} = e.dataTransfer
+                uploadHandler(files)
             })
             input.addEventListener('change', e => {
                 const {files} = e.target
-                for (let index = 0; index < files.length; index++) {
-                    const file = files[index]
-                    dataTransfer.items.add(file)
-                }
+                uploadHandler(files)
                 input.value = ''
-                set()
             })
-            form.addEventListener('submit', e => {
-                input.files = dataTransfer.files
-                console.log(dataTransfer)
-                console.log(dataTransfer.files)
-                for(let  i=0;i<dataTransfer.files.length;i++){
-                    dataTransfer.files[i].delete=true
-                    console.log(dataTransfer.files[i])
-                }
-                // e.preventDefault()
-            })
-            const set = () => {
-                const {files} = dataTransfer
+
+            const set = (files) => {
+
                 el.innerHTML = ''
                 for (let index = 0; index < files.length; index++) {
                     const file = files[index]
@@ -66,44 +73,93 @@ window.addEventListener('load', e => {
                     const fileInfo = document.createElement('p')
                     fileInfo.classList.add('info')
                     const name = document.createElement('span')
-                    name.textContent = file.name
+                    name.textContent = file.origin
                     const size = document.createElement('span')
                     size.textContent = `(${file.size}KB)`
                     fileInfo.appendChild(name)
                     fileInfo.appendChild(size)
 
 
-                    const fileButton = document.createElement('p')
-                    fileButton.classList.add('actions')
-
+                    const fileButtons = document.createElement('p')
+                    fileButtons.classList.add('actions')
                     const previewButton = document.createElement('a')
+                    previewButton.classList.add('preview')
+                    const downloadButton = document.createElement('a')
+                    downloadButton.classList.add('download')
+                    const deleteButton = document.createElement('a')
+                    deleteButton.classList.add('delete')
 
-                    previewButton.textContent = '미리보기'
+
                     previewButton.addEventListener('click', e => {
                         e.preventDefault()
                         e.stopPropagation()
-                        const fileReader = new FileReader()
-                        fileReader.addEventListener('load', (e) => {
-                            const blob = new Blob([e.target.result], {type: file.type})
-                            const url = URL.createObjectURL(blob)
-                            window.open(url)
-                        })
-                        fileReader.readAsArrayBuffer(file)
-                    })
+                        el.classList.add(LOADING_CLASS_NAME)
+                        fetch(`${UP_FILE_PATH}/${id}/${file.id}`)
+                            .then(response => {
+                                return response.blob()
+                            }).then(blob => {
 
-                    const deleteButton = document.createElement('a')
-                    deleteButton.textContent = '삭제하기'
+                            const url = URL.createObjectURL(blob)
+                            let source = null
+                            if(file.type.startsWith('image/')){
+                                source = document.createElement('img')
+                                source.src=url
+                            }else{
+                                source=document.createElement('iframe')
+                                source.src=`https://docs.google.com/gview?url=${file.url}&embedded=true`
+                            }
+                            if(source){
+                                const modalContent = document.createElement('div')
+                                modalContent.classList.add('modal-content')
+                                modalContent.appendChild(source)
+                                const modal = document.createElement('div')
+                                modal.classList.add('modal')
+                                const modalContainer = document.createElement('div')
+                                modalContainer.classList.add('modal-container')
+                                modal.appendChild(modalContainer)
+                                modal.addEventListener('click',e=>{
+                                    modal.remove()
+                                })
+                                modalContainer.addEventListener('click',e=>e.stopPropagation())
+                                modalContainer.appendChild(modalContent)
+                                document.body.appendChild(modal)
+                            }
+                        }).finally(() => el.classList.remove(LOADING_CLASS_NAME))
+                    })
+                    fileButtons.appendChild(previewButton)
+
+                    downloadButton.addEventListener('click', e => {
+                        e.stopPropagation()
+                        e.preventDefault()
+                        el.classList.add(LOADING_CLASS_NAME)
+                        fetch(`${UP_FILE_PATH}/${id}/${file.id}`)
+                            .then(response => {
+                                return response.blob()
+                            }).then(blob => {
+                            const link = document.createElement('a')
+                            link.href = URL.createObjectURL(blob)
+                            link.download = file.origin
+                            link.click()
+                        }).finally(() => el.classList.remove(LOADING_CLASS_NAME))
+                    })
+                    fileButtons.appendChild(downloadButton)
+
                     deleteButton.addEventListener('click', e => {
                         e.preventDefault()
                         e.stopPropagation()
-                        dataTransfer.items.remove(index)
-                        set()
+                        el.classList.add(LOADING_CLASS_NAME)
+                        fetch(`${UP_FILE_PATH}/${id}/${file.id}`, {
+                            method: 'DELETE'
+                        }).then(response => {
+                            return response.json()
+                        }).then(json => set(json))
+                            .finally(() => el.classList.remove(LOADING_CLASS_NAME))
                     })
-                    fileButton.appendChild(previewButton)
-                    fileButton.appendChild(deleteButton)
+                    fileButtons.appendChild(deleteButton)
 
                     tag.appendChild(fileInfo)
-                    tag.appendChild(fileButton)
+                    tag.appendChild(fileButtons)
+
                     el.appendChild(tag)
                 }
             }

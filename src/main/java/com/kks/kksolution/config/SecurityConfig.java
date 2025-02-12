@@ -2,6 +2,7 @@ package com.kks.kksolution.config;
 
 import com.kks.kksolution.service.AccountService;
 import com.kks.kksolution.vo.common.MessageVO;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,6 +11,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 @Configuration
 @EnableWebSecurity
@@ -19,6 +24,7 @@ public class SecurityConfig {
     @Value("${security.permitted.paths}")
     private String[] permittedPaths;
     private final AccountService accountService;
+    private final static String redirectUrlSessionKey = "redirectURL";
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -26,6 +32,8 @@ public class SecurityConfig {
 
         return httpSecurity
 //                .csrf(AbstractHttpConfigurer::disable)
+                .csrf(csrf -> csrf.ignoringRequestMatchers("/upload/**")) // 파일 업로드 관련 요청 제외
+
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(permittedPaths).permitAll()
                         .requestMatchers(
@@ -34,40 +42,50 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                                .loginPage("/account/signIn")
-                                .usernameParameter("accountId")
-                                .passwordParameter("accountPassword")
-                                .successHandler((request, response, authentication) -> {
-                                    request.getSession().setAttribute("message" , MessageVO.SUCCESS("SUCCSS!!"));
-                                    log.info(authentication.getPrincipal().toString());
-                                    log.info(authentication.getCredentials().toString());
-                                    log.info(authentication.getDetails().toString());
-                                    log.info(authentication.getAuthorities().toString());
-                                    log.info(authentication.getName().toString());
+                        .loginPage("/account/signIn")
+                        .usernameParameter("accountId")
+                        .passwordParameter("accountPassword")
 
-                                    response.sendRedirect("/account/signIn?error=none");
-                                })
-                                .failureHandler((request, response, exception) -> {
-                                    request.getSession().setAttribute("message" , MessageVO.ERROR("failureHandler!!"));
-                                    response.sendRedirect("/account/signIn?error=fuck+you");
-                                })
-                                .defaultSuccessUrl("/", true)
-                                .permitAll()
+
+                        .successHandler((request, response, authentication) -> {
+                            HttpSession session = request.getSession();
+                            session.setAttribute("message", MessageVO.SUCCESS("account.success.signin"));
+                            Object redirectUrl = session.getAttribute(redirectUrlSessionKey);
+                            if (redirectUrl == null) {
+                                response.sendRedirect("/");
+                            } else {
+                                response.sendRedirect(redirectUrl.toString());
+                            }
+                        })
+                        .failureHandler((request, response, exception) -> {
+                            request.getSession().setAttribute("message", MessageVO.ERROR("failureHandler!!"));
+                            response.sendRedirect("/account/signIn?error=fuck+you");
+                        })
+
+                        .permitAll()
                 )
+                .rememberMe(httpSecurityRememberMeConfigurer -> {
+                    httpSecurityRememberMeConfigurer.rememberMeParameter("remember").tokenValiditySeconds(7 * 24 * 60 * 60);
+                })
                 .exceptionHandling(httpSecurityExceptionHandlingConfigurer -> {
                     httpSecurityExceptionHandlingConfigurer
                             .accessDeniedHandler((request, response, exception) -> {
-                                request.getSession().setAttribute("message" , MessageVO.ERROR("accessDeniedHandler!!"));
+                                log.info(request.getRequestURI());
+                                request.getSession().setAttribute("message", MessageVO.ERROR("error.role"));
                                 response.sendRedirect("/");
                             })
                             .authenticationEntryPoint((request, response, exception) -> {
-                                request.getSession().setAttribute("message" , MessageVO.ERROR("authenticationEntryPoint!!"));
-                                response.sendRedirect("/account/signIn?error=entry");
+                                HttpSession session = request.getSession();
+                                session.setAttribute(redirectUrlSessionKey, request.getRequestURI());
+                                session.setAttribute("message", MessageVO.ERROR("error.entry"));
+                                response.sendRedirect("/account/signIn");
                             });
                 })
                 .logout(logout -> logout
-                        .logoutUrl("/account/signOut")
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/account/signOut"))
                         .logoutSuccessUrl("/")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID", "remember")
                         .permitAll()
                 ).userDetailsService(accountService)
                 .build();

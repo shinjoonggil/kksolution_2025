@@ -1,15 +1,19 @@
 package com.kks.kksolution.vo.common;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.ToString;
+import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
 
 
-
-public record MessageVO(com.kks.kksolution.vo.common.MessageVO.MessageType type,
-                        String message) implements Serializable {
+@AllArgsConstructor
+@Getter
+@Setter
+public class MessageVO implements Serializable {
+    private MessageType type;
+    private String message;
     @Serial
     private static final long serialVersionUID = 1L; // 직렬화 버전 명시
 
@@ -32,6 +36,7 @@ public record MessageVO(com.kks.kksolution.vo.common.MessageVO.MessageType type,
     public static MessageVO WARN(String message) {
         return new MessageVO(MessageType.WARN, message);
     }
+
 
     public enum MessageType {
         SUCCESS,

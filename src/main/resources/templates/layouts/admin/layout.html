@@ -26,6 +26,8 @@
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     <link rel="stylesheet" th:href="@{/assets/css/reset.css}">
     <link rel="stylesheet" th:href="@{/assets/css/root.css}">
@@ -35,7 +37,7 @@
     <script src="/assets/js/validator.js"></script>
     <script src="/assets/js/admin.js"></script>
 
-
+    <meta name="_csrf">
 </head>
 <body th:class="loading" th:classappend="${menuHide}">
 <th:block th:replace="~{layouts/admin/header :: header}"/>
@@ -55,47 +57,41 @@
 <th:block th:if="${message != null}">
     <script th:inline="javascript">
         /*<![CDATA[*/
-        const n = new Notyf({
-            duration:2000,
-            position: {
-                x: 'right',
-                y: 'bottom'
-            },
-            types: [
-                {
-                    type:'SUCCESS',
-                    background: '#99cc33'
-                },
-                {
-                    type: 'WARN',
-                    background: '#ffcc00',
-
-                },
-                {
-                    type: 'ERROR',
-                    background: '#ff9966',
-
-                },
-                {
-                    type: 'INFO',
-                    background: '#61a1f1',
-                },
-                {
-                    type: 'DEFAULT',
-                    background: '#6a6a6a',
-                }
-            ]
-        })
         window.addEventListener('load',_=>{
             n.open({
                 type: [[${message.type}]],
                 message: [[${message.message}]]
-
             })
         })
         /*]]>*/
     </script>
 </th:block>
+<div class="modal" >
+    <div class="modal-container">
+        <div class="delete-form">
+            <form action="" method="post" id="deleteForm">
+                <input type="hidden" name="id" value=""/>
+                <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+                <h3 th:text="#{admin.delete.title}"></h3>
+                <div class="content">
+                    <p th:text="#{admin.delete.content1}"></p>
+                    <p th:text="#{admin.delete.content2}"></p>
+                    <p>
+                        <span class="error" th:text="'\''+#{admin.delete.keyword}+'\''"></span>
+                        <span th:text="#{admin.delete.content3}"></span>
+                    </p>
+                </div>
+                <label for="deleteText">
+                    <input type="text" name="deleteText" id="deleteText" autofocus required autocomplete="off"/>
+                </label>
+                <div class="buttons">
+                    <button type="button" class="button normal" th:text="#{form.cancel}"></button>
+                    <button type="submit" class="button error" th:text="#{form.ok}"></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 
 </html>

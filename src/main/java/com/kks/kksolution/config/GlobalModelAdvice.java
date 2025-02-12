@@ -22,10 +22,9 @@ import java.util.List;
 
 @ControllerAdvice
 @RequiredArgsConstructor
-public class GlobalMenuAdvice {
+public class GlobalModelAdvice {
     private final static String GLOBAL_MENU_ATTRIBUTE_KEY = "globalMenu";
     private final static String ADMIN_MENU_ATTRIBUTE_KEY = "adminMenu";
-    private static final Logger log = LoggerFactory.getLogger(GlobalMenuAdvice.class);
     private final MenuRepository menuRepository;
     private final HttpServletRequest request;
 

@@ -1,5 +1,6 @@
 
-window.addEventListener('load', () => {
+
+window.addEventListener('DOMContentLoaded', () => {
     Quill.register('modules/imageResize', QuillResizeImage);
     document.querySelectorAll('form').forEach(form=>{
         form.querySelectorAll('.editor').forEach(el => {

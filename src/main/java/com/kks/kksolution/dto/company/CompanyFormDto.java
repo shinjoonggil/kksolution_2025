@@ -10,7 +10,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
 public class CompanyFormDto {
     private UUID id;
     private String name;

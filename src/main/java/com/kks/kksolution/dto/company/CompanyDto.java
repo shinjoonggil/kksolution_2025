@@ -2,10 +2,11 @@ package com.kks.kksolution.dto.company;
 
 import com.kks.kksolution.entity.Company;
 import lombok.Getter;
-
+import lombok.Setter;
 import java.util.UUID;
 
 @Getter
+@Setter
 public class CompanyDto {
     private UUID id;
     private String name;
@@ -21,6 +22,8 @@ public class CompanyDto {
     private String agentContact;
     private String agentEmail;
     private String description;
+
+
 
     public CompanyDto(Company company) {
         if (company != null) {

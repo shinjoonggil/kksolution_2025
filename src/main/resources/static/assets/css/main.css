@@ -135,8 +135,3 @@ nav.quick a span{
 }
 
 
-/*Message Toast Custom*/
-.notyf__wrapper{
-    padding: 17px 0;
-    color: var(--color-text);
-}

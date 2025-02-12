@@ -2,15 +2,63 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/admin/layout}">
+<th:block layout:fragment="plugin">
+
+</th:block>
 <th:block layout:fragment="content">
-  <div class="tool-box">
-    <h2>업체 목록</h2>
-    <div class="buttons">
-      <a th:href="@{/admin/company-form}">업체 등록</a>
+    <div class="tool-box">
+        <h2>업체 목록</h2>
+        <div class="buttons">
+            <a class="button primary" th:href="@{/admin/company-form}">신규 업체</a>
+        </div>
     </div>
-  </div>
-  <section style="background-color: azure">
-    CompanyList
-  </section>
+    <article>
+        <section class="list">
+            <div class="list-container">
+            <table>
+                <thead>
+                <tr>
+                    <th class="checks"><label for="all"><input type="checkbox" id="all"/></label></th>
+                    <th th:class="${@templateHelper.getSortClass('name')}"><a th:href="${@templateHelper.getSortLink('name')}" th:text="#{company.name}"></a></th>
+                    <th th:class="${@templateHelper.getSortClass('businessNumber')}"><a th:href="${@templateHelper.getSortLink('businessNumber')}" th:text="#{company.business-number}"></a></th>
+                    <th th:class="${@templateHelper.getSortClass('ownerName')}"><a th:href="${@templateHelper.getSortLink('ownerName')}" th:text="#{company.owner}"></a></th>
+                    <th th:class="${@templateHelper.getSortClass('contact')}"><a th:href="${@templateHelper.getSortLink('contact')}" th:text="#{company.contact}"></a></th>
+
+                    <th  th:class="${@templateHelper.getSortClass('agentName')}"><a th:href="${@templateHelper.getSortLink('agentName')}" th:text="#{company.agent}"></a></th>
+                    <th  th:class="${@templateHelper.getSortClass('agentContact')}"><a th:href="${@templateHelper.getSortLink('agentContact')}" th:text="#{company.agent-contact}"></a></th>
+                    <th><span th:text="#{company.address}"></span></th>
+                    <th class="actions"><span th:text="#{list.actions}"></span></th>
+                </tr>
+                </thead>
+                <tbody>
+
+
+                <tr th:if="${items.isEmpty()}" class="empty">
+                    <td th:text="#{list.empty}"></td>
+                </tr>
+
+
+                <tr th:each="item : ${items}">
+                    <td class="checks"><label><input type="checkbox" th:name="${'id['+item.id+']'}"/></label></td>
+                    <td th:text="${item.name}"></td>
+                    <td th:text="${item.businessNumber}"></td>
+                    <td th:text="${item.ownerName}"></td>
+                    <td th:text="${item.contact}"></td>
+                    <td th:text="${item.agentName}"></td>
+                    <td th:text="${item.agentContact}"></td>
+                    <td th:text="${item.address}"></td>
+                    <td class="actions">
+                        <a th:href="@{'/admin/company-form/' + ${item.id}}" class="edit" th:tooltip="#{tip.edit}"></a>
+                        <a th:href="@{'#'}" class="delete" th:tooltip="#{tip.delete}"></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            </div>
+
+            <th:block th:replace="~{layouts/pagination :: pagination(${items}, ${path})}"/>
+
+        </section>
+    </article>
 </th:block>
 </html>

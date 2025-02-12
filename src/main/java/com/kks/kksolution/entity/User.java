@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString
 public class User implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L; // 직렬화 버전 명시
