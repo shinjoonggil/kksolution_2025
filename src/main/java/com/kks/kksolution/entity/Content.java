@@ -22,7 +22,7 @@ public class Content {
     private UUID id;
     private String title;
     @Column(unique = true)
-    private String path;
+    private String label;
     @Column(columnDefinition = "MEDIUMTEXT")
     private String content;
 

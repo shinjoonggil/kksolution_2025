@@ -7,9 +7,9 @@
 </th:block>
 <th:block layout:fragment="content">
     <div class="tool-box">
-        <h2 th:text="#{popup.subject} + ' ' + #{form.list}"></h2>
+        <h2 th:text="#{admin.content.popup} + ' ' + #{form.list}"></h2>
         <div class="buttons">
-            <a class="button primary" th:href="@{/admin/popup-form}" th:text="#{popup.subject} + ' ' + #{form.register}"></a>
+            <a class="button primary" th:href="@{/admin/popup-form}" th:text="#{admin.content.popup} + ' ' + #{form.register}"></a>
         </div>
     </div>
     <article>
@@ -21,6 +21,12 @@
                         <th class="checks"><label for="all"><input type="checkbox" id="all"/></label></th>
                         <th th:class="${@templateHelper.getSortClass('title')}"><a
                                 th:href="${@templateHelper.getSortLink('title')}" th:text="#{popup.title}"></a></th>
+                        <th th:class="${@templateHelper.getSortClass('url')}"><a
+                                th:href="${@templateHelper.getSortLink('url')}" th:text="#{popup.url}"></a></th>
+                        <th th:class="${@templateHelper.getSortClass('startAt')}"><a
+                                th:href="${@templateHelper.getSortLink('startAt')}" th:text="#{popup.start}"></a></th>
+                        <th th:class="${@templateHelper.getSortClass('endAt')}"><a
+                                th:href="${@templateHelper.getSortLink('endAt')}" th:text="#{popup.end}"></a></th>
 
                         <th class="actions"><span th:text="#{list.actions}"></span></th>
                     </tr>
@@ -33,6 +39,9 @@
                         <td class="checks"><label><input type="checkbox" th:name="${'id['+item.id+']'}"/></label></td>
 
                         <td th:text="${item.title}"></td>
+                        <td th:text="${item.url}"></td>
+                        <td th:text="${#temporals.format(item.startAt,'yyyy-MM-dd HH:mm')}"></td>
+                        <td th:text="${#temporals.format(item.endAt,'yyyy-MM-dd HH:mm')}"></td>
 
                         <td class="actions">
                             <a th:href="@{'/admin/popup-form/' + ${item.id}}" class="edit" th:tooltip="#{tip.edit}"></a>

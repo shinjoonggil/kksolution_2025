@@ -52,13 +52,13 @@ public class UploadFileService {
 
         PutObjectResult putObjectResult = amazonS3.putObject(putObjectRequest);
 
-        return UploadFile.builder()
+        return uploadFileRepository.save(UploadFile.builder()
                 .id(fileIndex)
                 .groupId(groupIndex)
                 .origin(multipartFile.getOriginalFilename())
                 .contentType(multipartFile.getContentType())
                 .size(multipartFile.getSize())
-                .build();
+                .build());
     }
 
     public List<UploadFileDto> getUploadFiles(UUID groupId) {
@@ -67,6 +67,10 @@ public class UploadFileService {
 
     public void deleteUploadFile(UUID groupId, UUID id) {
         uploadFileRepository.findByGroupIdAndId(groupId, id).ifPresent(this::delete);
+    }
+
+    public void deleteUploadFile(UploadFile uploadFile) {
+        uploadFileRepository.findByGroupIdAndId(uploadFile.getGroupId(), uploadFile.getId()).ifPresent(this::delete);
     }
 
     public void deleteGroupUploadFile(UUID groupId) {
@@ -92,7 +96,6 @@ public class UploadFileService {
         for (MultipartFile uploadFile : uploadFiles) {
             try {
                 UploadFile uploadResult = upload(uploadFile, groupId);
-                uploadFileRepository.save(uploadResult);
             } catch (IOException e) {
                 exceptionFiles.add(uploadFile);
             }

@@ -18,14 +18,13 @@ import java.util.UUID;
 @RestController
 @RequestMapping("upload")
 @RequiredArgsConstructor
-public class UploadController {
+public class UploadFileController {
     private final UploadFileService uploadFileService;
-    private static final Logger log = LoggerFactory.getLogger(UploadController.class);
-    @Value("${java.io.tmpdir}")
-    private String tempDir;
-
-
-    private final UploadFileRepository uploadFileRepository;
+//    @Value("${java.io.tmpdir}")
+//    private String tempDir;
+//
+//
+//
 
     @PostMapping(value = "{groupId}", consumes = "multipart/form-data", produces = "application/json")
     public ResponseEntity<List<UploadFileDto>> upload(@PathVariable UUID groupId, @RequestParam("uploadFiles") List<MultipartFile> uploadFiles){

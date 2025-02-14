@@ -2,10 +2,90 @@ const UP_FILE_PATH = '/upload'
 const LOADING_CLASS_NAME = 'loading'
 window.addEventListener('DOMContentLoaded', e => {
     document.querySelectorAll('form').forEach(form => {
-        // const csrfToken = form._csrf.value
-        form.querySelectorAll('.file-uploader').forEach(el => {
+
+        form.querySelectorAll('label.file-uploader').forEach(el => {
+            const span = el.querySelector('span')
+            const input = el.querySelector('input[type=file]')
+            input.addEventListener('change', e => {
+                if (e.target.files[0]) {
+                    span.textContent = e.target.files[0].name
+                }
+            })
+            // const {accept,name , url} = el.dataset
+            //
+            // const fileInput = document.createElement('input')
+            // fileInput.type = 'file'
+            // fileInput.hidden = true
+            // fileInput.accept = accept
+            // fileInput.name=name
+            // form.appendChild(fileInput)
+            // const previewContainer = document.createElement('img')
+            // previewContainer.classList.add('preview-image')
+            //
+            // if(url){
+            //     previewContainer.src=url
+            // }else{
+            //     previewContainer.classList.add('no-image')
+            // }
+            //
+            // previewContainer.addEventListener('error',e=>{
+            //     previewContainer.classList.add('no-image')
+            //     fileInput.value=''
+            //     if(previewContainer.src){
+            //         previewContainer.removeAttribute('src')
+            //     }
+            // })
+            // previewContainer.addEventListener('load',e=>{
+            //     previewContainer.classList.remove('no-image')
+            // })
+            // const deleteButton = document.createElement('button')
+            // deleteButton.type='button'
+            // deleteButton.classList.add('delete')
+            // deleteButton.addEventListener('click',e=>{
+            //     e.preventDefault()
+            //     e.stopPropagation()
+            //     fileInput.value=''
+            //     previewContainer.removeAttribute('src')
+            //     previewContainer.classList.add('no-image')
+            // })
+            // el.appendChild(previewContainer)
+            // el.appendChild(deleteButton)
+            // //
+            // el.addEventListener('click', e => {
+            //     fileInput.click()
+            // })
+            // el.addEventListener('dragover', (e) => {
+            //     e.preventDefault()
+            //     el.style.border = '2px dashed #007bff'
+            // })
+            // el.addEventListener('dragleave', () => el.style.border = null)
+            // el.addEventListener('drop', (e) => {
+            //     e.preventDefault()
+            //     el.style.border = null
+            //     changeHandler(e.dataTransfer.files[0])
+            // })
+            // fileInput.addEventListener('change', e => {
+            //     changeHandler(e.target.files[0])
+            // })
+            //
+            // const changeHandler=(file)=>{
+            //     if (file) {
+            //         const fileReader = new FileReader()
+            //         fileReader.addEventListener('load', e => {
+            //             previewContainer.src=e.target.result
+            //         })
+            //         fileReader.readAsDataURL(file)
+            //     }
+            // }
+            // el.removeAttribute('data-url')
+            // el.removeAttribute('data-name')
+            // el.removeAttribute('data-accept')
+        })
+
+        form.querySelectorAll('.multi-uploader').forEach(el => {
 
             const {id, accept, name} = el.dataset
+
 
             const input = document.createElement('input')
             input.id = id
@@ -101,21 +181,21 @@ window.addEventListener('DOMContentLoaded', e => {
 
                             const url = URL.createObjectURL(blob)
                             let source = null
-                            if(file.type.startsWith('image/')){
+                            if (file.type.startsWith('image/')) {
                                 source = document.createElement('img')
-                                source.src=url
-                            }else{
-                                source=document.createElement('iframe')
-                                source.src=`https://docs.google.com/gview?url=${file.url}&embedded=true`
+                                source.src = url
+                            } else {
+                                source = document.createElement('iframe')
+                                source.src = `https://docs.google.com/gview?url=${file.url}&embedded=true`
 
                             }
-                            if(source){
+                            if (source) {
                                 const modalContent = document.createElement('div')
                                 modalContent.classList.add('modal-content')
                                 modalContent.classList.add('loading')
                                 modalContent.appendChild(source)
 
-                                source.addEventListener('load',e=>{
+                                source.addEventListener('load', e => {
                                     modalContent.classList.remove('loading')
                                 })
 
@@ -124,10 +204,10 @@ window.addEventListener('DOMContentLoaded', e => {
                                 const modalContainer = document.createElement('div')
                                 modalContainer.classList.add('modal-container')
                                 modal.appendChild(modalContainer)
-                                modal.addEventListener('click',e=>{
+                                modal.addEventListener('click', e => {
                                     modal.remove()
                                 })
-                                modalContainer.addEventListener('click',e=>e.stopPropagation())
+                                modalContainer.addEventListener('click', e => e.stopPropagation())
                                 modalContainer.appendChild(modalContent)
                                 document.body.appendChild(modal)
                             }
@@ -170,6 +250,9 @@ window.addEventListener('DOMContentLoaded', e => {
                     el.appendChild(tag)
                 }
             }
+            el.removeAttribute('data-id')
+            el.removeAttribute('data-accept')
+            el.removeAttribute('data-name')
         })
 
     })

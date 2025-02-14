@@ -71,13 +71,8 @@
         "children": null
       },
       {
-        "label": "partner",
-        "path": "/partner",
-        "children": null
-      },
-      {
-        "label": "certificate",
-        "path": "/certificate",
+        "label": "resource",
+        "path": "/resource",
         "children": null
       }
     ]

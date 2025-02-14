@@ -112,4 +112,24 @@ window.addEventListener('load', () => {
             deleteText.focus()
         })
     })
+    document.querySelectorAll('.form-control:has(input[data-type=select])').forEach(control=>{
+        const optionsContainer = control.querySelector('ul')
+        const options = optionsContainer.querySelectorAll('li')
+        const span = control.querySelector('span.select-value')
+        const input = control.querySelector('input[data-type=select]')
+        span.addEventListener('click',e=>{
+            e.stopPropagation()
+            optionsContainer.style.display='block'
+            window.addEventListener('click',e=>{
+                optionsContainer.style.display='none'
+            })
+        })
+        options.forEach(option=>{
+            option.addEventListener('click',e=>{
+                input.value=e.target.dataset.value
+                span.textContent=e.target.textContent
+            })
+        })
+
+    })
 })

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/admin/layout}">
+<th:block layout:fragment="plugin">
+
+</th:block>
+<th:block layout:fragment="content">
+    <div class="tool-box">
+        <h2 th:text="#{admin.content.resource} + ' ' + #{form.list}"></h2>
+        <div class="buttons">
+            <a class="button primary" th:href="@{/admin/resource-form}"
+               th:text="#{admin.content.resource} + ' ' + #{form.register}"></a>
+        </div>
+    </div>
+    <article>
+        <section class="list">
+            <div class="list-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="checks"><label for="all"><input type="checkbox" id="all"/></label></th>
+                            <th th:class="${@templateHelper.getSortClass('title')}"><a
+                                    th:href="${@templateHelper.getSortLink('title')}" th:text="#{resource.title}"></a></th>
+                            <th th:class="${@templateHelper.getSortClass('group.title')}"><a
+                                    th:href="${@templateHelper.getSortLink('group.title')}" th:text="#{resource.group}"></a>
+                            </th>
+                            <th th:class="${@templateHelper.getSortClass('createBy.name')}"><a
+                                    th:href="${@templateHelper.getSortLink('createBy.name')}"
+                                    th:text="#{resource.createBy}"></a></th>
+                            <th class="actions"><span th:text="#{list.actions}"></span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:if="${items.isEmpty()}" class="empty">
+                        <td th:text="#{list.empty}" colspan="5"></td>
+                    </tr>
+                    <tr th:each="item : ${items}">
+                        <td class="checks"><label><input type="checkbox" th:name="${'id['+item.id+']'}"/></label></td>
+
+                        <td th:text="${item.title}" th:title="${item.title}"></td>
+                        <td th:text="${item.group.title}" th:title="${item.group.title}"></td>
+                        <td th:text="${item.createBy.name}" th:title="${item.createBy.name}"></td>
+
+
+                        <td class="actions">
+                            <a th:href="@{'/admin/resource-form/' + ${item.id}}" class="edit"
+                               th:tooltip="#{tip.edit}"></a>
+                            <button class="delete" th:tooltip="#{tip.delete}" th:data-id="${item.id}"
+                                    data-action="/admin/resource-delete" data-type="delete"></button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <th:block th:replace="~{layouts/pagination :: pagination(${items}, ${path})}"/>
+        </section>
+    </article>
+    <!--    <div style="position: fixed;left: 0;top: 0;width: 100vw;height: 100vh;background-color: #00000070;z-index: 1001;display: flex;justify-resource: center;align-items: center;">-->
+    <!--        <div style="background-color: #fff;border-radius: 3px;display: flex;justify-resource: start;align-items: center;flex-direction: column;gap: 1rem;padding: 30px;box-sizing: border-box">-->
+    <!--            <h3 style="font-size: 24px;font-weight: 700;">내용 삭제</h3>-->
+    <!--            <p>정말 내용을 삭제 하시겠습니까?</p>-->
+    <!--            <p>삭제하시면 복구 하실 수 없습니다.</p>-->
+    <!--            <p>'삭제'를 입력 하시면 데이터가 삭제 됩니다.</p>-->
+    <!--            <label><input type="text" name="deleteText" placeholder="삭제"/></label>-->
+
+    <!--            <div class="buttons">-->
+    <!--                <button class="error">삭제</button>-->
+    <!--                <button class="normal">취소</button>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+</th:block>
+</html>

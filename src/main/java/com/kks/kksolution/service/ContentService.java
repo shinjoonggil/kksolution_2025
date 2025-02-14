@@ -52,7 +52,7 @@ public class ContentService {
 
         }
         content.setTitle(form.getTitle());
-        content.setPath(form.getPath());
+        content.setLabel(form.getLabel());
         content.setContent(form.getContent());
         content.setUpdateIp(request.getRemoteAddr());
 

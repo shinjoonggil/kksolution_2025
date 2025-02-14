@@ -278,20 +278,22 @@ fieldset legend {
     position: relative;
 }
 
-.form-control label {
+.form-control > label {
     display: inline-block;
     width: 100%;
+    line-height: 20px;
+    min-height: 20px;
 }
 
 .form-control label span.label {
-    display: inline-block;
-    width: 100%;
     font-weight: 400;
     font-size: 12px;
-    line-height: 20px;
-}
 
-.form-control input {
+}
+.form-control :is(
+    input:is([type=text],[type=email],[type=tel],[type=url]),
+    select
+){
     width: 100%;
     border-radius: 3px;
     outline: inherit;
@@ -301,10 +303,13 @@ fieldset legend {
     box-sizing: border-box;
     display: inline-block;
 }
+.form-control input {
+
+}
 
 .form-control :is(
     input,
-    .file-uploader,
+    .multi-uploader,
     .ql-toolbar,
     .ql-container
 ) {
@@ -460,13 +465,14 @@ fieldset legend {
     border: none !important;
     border-radius: 3px;
     padding: 5px !important;
+    color: transparent;
 }
 
 #editor-resizer .toolbar {
     z-index: 1;
 }
 
-.file-uploader.loading::before {
+.multi-uploader.loading::before {
     content: '';
     position: absolute;
     left: 0;
@@ -477,7 +483,7 @@ fieldset legend {
     backdrop-filter: blur(2px);
 }
 
-.file-uploader.loading::after {
+.multi-uploader.loading::after {
     content: '';
     position: absolute;
     left: calc(50% - 15px);
@@ -492,11 +498,11 @@ fieldset legend {
     animation: rotation 1s linear infinite;
 }
 
-.file-uploader.loading {
+.multi-uploader.loading {
     cursor: no-drop;
 }
 
-.file-uploader {
+.multi-uploader {
     position: relative;
     border-radius: 3px;
     padding: 5px;
@@ -509,11 +515,11 @@ fieldset legend {
     line-height: 15px;
 }
 
-.file-uploader::-webkit-scrollbar {
+.multi-uploader::-webkit-scrollbar {
     display: none;
 }
 
-.file-uploader div {
+.multi-uploader div {
     display: flex;
     justify-content: space-between;
     margin-bottom: 5px;
@@ -521,20 +527,20 @@ fieldset legend {
     padding: 3px;
 }
 
-.file-uploader p.actions a:hover {
+.multi-uploader p.actions a:hover {
     background-color: #ddd;
 }
 
-.file-uploader p.info {
+.multi-uploader p.info {
     flex-grow: 1;
 }
 
-.file-uploader p.actions {
+.multi-uploader p.actions {
     display: flex;
     gap: 5px;
 }
 
-.file-uploader p.actions a {
+.multi-uploader p.actions a {
     text-decoration: underline;
     cursor: pointer;
     width: 1rem;
@@ -545,19 +551,19 @@ fieldset legend {
     border-radius: 3px;
 }
 
-.file-uploader p.actions a.download {
+.multi-uploader p.actions a.download {
     background-image: url("/assets/icon_svg/download.svg");
 }
 
-.file-uploader p.actions a.preview {
+.multi-uploader p.actions a.preview {
     background-image: url("/assets/icon_svg/preview.svg");
 }
 
-.file-uploader p.actions a.delete {
+.multi-uploader p.actions a.delete {
     background-image: url("/assets/icon_svg/delete.svg");
 }
 
-.file-uploader p.actions a:hover {
+.multi-uploader p.actions a:hover {
     font-weight: 550;
 }
 
@@ -656,6 +662,14 @@ section.list .list-container table {
 section.list .list-container table td{
     min-width: 80px;
     max-width: 200px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+section.list .list-container table td.actions{
+    overflow: visible;
+}
+section.list .list-container table td.actions a{
+    margin: 0 5px;
 }
 section.list .list-container table :is(th,td) {
 
@@ -798,4 +812,67 @@ section.list .pagination .next{
 
 span.error{
     color: var(--color-error);
+}
+.form-control:has(input[data-type=select]) input[data-type=select]{
+    cursor: pointer;
+}
+.form-control:has(input[data-type=select]) ul{
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background-color: var(--color-white);
+    width: 100%;
+    margin-top: 3px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 3px #cccccc70;
+    z-index: 10;
+    display: none;
+}
+.form-control:has(input[data-type=select]) li{
+    line-height: 25px;
+    padding: 5px;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 14px;
+}
+.form-control:has([data-type=select]) li:hover{
+    background-color: var(--color-active);
+}
+.form-control:has(input[data-type=select]) .select-value{
+    width: 100%;
+    border-radius: 3px;
+    outline: inherit;
+    border: none;
+    line-height: 25px;
+    padding: 5px;
+    box-sizing: border-box;
+    display: inline-block;
+    background-color: var(--color-white);
+    min-height: 35px;
+}
+
+.form-control .box-group{
+    display: inline-block;
+    width: 100%;
+    border-radius: 3px;
+    border: none;
+    line-height: 25px;
+    background-color: var(--color-white);
+    padding: 5px;
+    box-sizing: border-box;
+    min-height: 35px;
+}
+.form-control .box-group .check{
+    display: flex;
+}
+.form-control .form-item{
+    display: inline-block;
+    width: 100%;
+    border-radius: 3px;
+    border: none;
+    line-height: 25px;
+    background-color: var(--color-white);
+    padding: 5px;
+    box-sizing: border-box;
+    height: 35px;
 }

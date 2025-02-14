@@ -1,6 +1,8 @@
 package com.kks.kksolution.dto.popup;
 
+import com.kks.kksolution.dto.upload.UploadFileDto;
 import com.kks.kksolution.entity.Popup;
+import com.kks.kksolution.entity.UploadFile;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -16,8 +18,9 @@ public class PopupDto {
     private Integer sequence;
     private String url;
     private String target;
-    private String viewUrl;
-    public PopupDto(Popup popup){
+    private String alt;
+    private UploadFileDto uploadFile;
+    public PopupDto(Popup popup , String endPoint , String bucket){
         this.id = popup.getId();
         this.title = popup.getTitle();
         this.description = popup.getDescription();
@@ -26,6 +29,10 @@ public class PopupDto {
         this.sequence = popup.getSequence();
         this.url = popup.getUrl();
         this.target = popup.getTarget();
-        this.viewUrl = popup.getViewUrl();
+        this.alt = popup.getAlt();
+        if(popup.getUploadFile() != null){
+            this.uploadFile = new UploadFileDto(popup.getUploadFile() , endPoint , bucket);
+        }
+
     }
 }

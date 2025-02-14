@@ -43,5 +43,6 @@ const toolbarOptions = [
     [{ 'font': [] }],
     [{ 'align': [] }],
     ['table'],
+    ['html'],
     ['clean']                                         // remove formatting button
 ];

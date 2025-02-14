@@ -13,12 +13,13 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
     <script th:src="|${url}/assets/js/datepicker.js|"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script th:src="|${url}/assets/js/file.js|"></script>
 </th:block>
 
 <th:block layout:fragment="content">
-    <form th:action="@{/admin/popup-form}" method="post">
+    <form th:action="@{/admin/popup-form}" method="post" enctype="multipart/form-data">
         <div class="tool-box">
-            <h2 th:text="#{popup.subject} + ' ' + #{form.register}"></h2>
+            <h2 th:text="#{admin.content.popup} + ' ' + #{form.register}"></h2>
 
             <div class="buttons">
                 <a class="button" th:href="@{/admin/popup}" th:text="#{form.list}"></a>
@@ -40,24 +41,82 @@
                         <label for="url">
                             <span class="label" th:text="#{popup.url}"></span>
                         </label>
-                        <input type="text" name="url" id="url" th:value="${item?.url}" />
+                        <input type="url" name="url" id="url" th:value="${item?.url}"/>
                     </div>
                     <div class="form-group">
                         <div class="form-control">
                             <label for="startAt">
                                 <span class="label" th:text="#{popup.start}"></span>
                             </label>
-                            <input type="text" name="startAt" id="startAt" th:value="${item?.startAt}" data-type="date-picker" required/>
+                            <input type="text" name="startAt" id="startAt" th:value="${item?.startAt}"
+                                   data-type="date-picker" required/>
                         </div>
                         <div class="form-control">
                             <label for="endAt">
                                 <span class="label" th:text="#{popup.end}"></span>
                             </label>
-                            <input type="text" name="endAt" id="endAt" th:value="${item?.endAt}" data-type="date-picker" required/>
+                            <input type="text" name="endAt" id="endAt" th:value="${item?.endAt}" data-type="date-picker"
+                                   required/>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>이미지</legend>
+                    <div class="form-group">
+                        <div class="form-control">
+                            <label>
+                                <span class="label" th:text="#{popup.image-file}">이미지 파일</span>
+                            </label>
+                            <label class="file-uploader">
+                                <span class="form-item" th:text="${item.uploadFile?.origin}"></span>
+                                <input type="file" name="uploadFile" accept="image/*" hidden/>
+                            </label>
+                        </div>
+                        <!--                        <div class="form-control">-->
+                        <!--                            <label>-->
+                        <!--                                <span class="label"></span>-->
+                        <!--                            </label>-->
+                        <!--                            <div class="box-group">-->
+                        <!--                                <div class="check">-->
+                        <!--                                    <input type="checkbox" name="deleteFile" id="deleteFile"/>-->
+                        <!--                                    <label for="deleteFile"><span class="label"-->
+                        <!--                                                                  th:text="#{popup.delete-file}"></span></label>-->
+                        <!--                                </div>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                        <div class="form-control">
+                            <label for="alt">
+                                <span class="label" th:text="#{popup.image-alt}"></span>
+                            </label>
+                            <input type="text" name="alt" id="alt" th:value="${item?.alt}"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <div class="form-control">
+                            <label for="target">
+                                <span class="label" th:text="#{popup.target}"></span>
+                            </label>
+                            <span class="select-value" th:if="${item.target == null}"></span>
+                            <span class="select-value" th:each="type : ${types}" th:if="${type.name == item.target && item.target != null}"
+                                  th:text="#{${type.message}}"></span>
+                            <input type="hidden" name="target" id="target" th:value="${item?.target}"
+                                   data-type="select"/>
+                            <ul>
+                                <li th:each="type : ${types}" th:text="#{${type.message}}"
+                                    th:data-value="${type.name()}"></li>
+                            </ul>
                         </div>
                     </div>
 
 
+                </fieldset>
+
+                <fieldset>
+                    <legend>메모</legend>
+                    <div class="form-control">
+                        <div class="editor" data-id="description" th:text="${item?.description}"></div>
+                    </div>
                 </fieldset>
             </section>
         </article>

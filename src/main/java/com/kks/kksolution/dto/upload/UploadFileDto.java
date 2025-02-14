@@ -8,6 +8,7 @@ import java.util.UUID;
 
 @Getter
 public class UploadFileDto {
+
     private UUID id;
     private UUID groupId;
     private String origin;

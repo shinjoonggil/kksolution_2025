@@ -14,7 +14,7 @@ public class SecurityUtil {
 
     public static User getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        log.info(authentication.getPrincipal().toString());
+        log.info("principal : {}", authentication.getPrincipal());
         UserAccount account = (UserAccount) authentication.getPrincipal();
         return account.getUser();
 

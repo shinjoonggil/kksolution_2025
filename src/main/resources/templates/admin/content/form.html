@@ -13,7 +13,7 @@
 <th:block layout:fragment="content">
     <form th:action="@{/admin/content-form}" method="post">
         <div class="tool-box">
-            <h2 th:text="#{content.subject} + ' ' + #{form.register}"></h2>
+            <h2 th:text="#{admin.content.content} + ' ' + #{form.register}"></h2>
 
             <div class="buttons">
                 <a class="button" th:href="@{/admin/content}" th:text="#{form.list}"></a>
@@ -31,10 +31,10 @@
                         <input type="text" name="title" id="title" th:value="${item?.title}" required/>
                     </div>
                     <div class="form-control">
-                        <label for="path">
-                            <span class="label" th:text="#{content.path}"></span>
+                        <label for="label">
+                            <span class="label" th:text="#{content.label}"></span>
                         </label>
-                        <input type="text" name="path" id="path" th:value="${item?.path}" required maxlength="10"/>
+                        <input type="text" name="label" id="label" th:value="${item.label}" required maxlength="10"/>
                     </div>
                     <div class="form-control">
                         <label for="content">

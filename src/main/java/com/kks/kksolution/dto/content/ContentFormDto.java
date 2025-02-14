@@ -1,5 +1,6 @@
 package com.kks.kksolution.dto.content;
 
+import com.kks.kksolution.dto.common.CommonFormDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,9 +12,9 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
-public class ContentFormDto {
+public class ContentFormDto extends CommonFormDto {
     private UUID id;
     private String title;
-    private String path;
+    private String label;
     private String content;
 }

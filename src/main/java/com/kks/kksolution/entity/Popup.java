@@ -26,13 +26,19 @@ public class Popup {
 
     private String url;
     private String target;
-    private String viewUrl;
+    private String alt;
 
-    @ManyToOne
-    private User createBy;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private UploadFile uploadFile;
+
 
     @Column(columnDefinition = "MEDIUMTEXT")
     private String description;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User createBy;
+
     @CreationTimestamp
     private LocalDateTime createAt;
     @UpdateTimestamp

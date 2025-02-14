@@ -11,7 +11,7 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class DeleteFormDto {
+public class DeleteFormDto extends CommonFormDto{
     private UUID id;
     private String deleteText;
 }

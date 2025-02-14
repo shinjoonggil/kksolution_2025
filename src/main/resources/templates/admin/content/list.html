@@ -7,9 +7,9 @@
 </th:block>
 <th:block layout:fragment="content">
     <div class="tool-box">
-        <h2>내용 목록</h2>
+        <h2 th:text="#{admin.content.content} + ' ' + #{form.list}"></h2>
         <div class="buttons">
-            <a class="button primary" th:href="@{/admin/content-form}">신규 내용</a>
+            <a class="button primary" th:href="@{/admin/content-form}" th:text="#{admin.content.content} + ' ' + #{form.register}"></a>
         </div>
     </div>
     <article>
@@ -21,8 +21,8 @@
                         <th class="checks"><label for="all"><input type="checkbox" id="all"/></label></th>
                         <th th:class="${@templateHelper.getSortClass('title')}"><a
                                 th:href="${@templateHelper.getSortLink('title')}" th:text="#{content.title}"></a></th>
-                        <th th:class="${@templateHelper.getSortClass('path')}"><a
-                                th:href="${@templateHelper.getSortLink('path')}" th:text="#{content.path}"></a></th>
+                        <th th:class="${@templateHelper.getSortClass('label')}"><a
+                                th:href="${@templateHelper.getSortLink('label')}" th:text="#{content.label}"></a></th>
                         <th th:class="${@templateHelper.getSortClass('createBy.name')}"><a
                                 th:href="${@templateHelper.getSortLink('createBy.name')}"
                                 th:text="#{content.createBy}"></a></th>
@@ -36,7 +36,7 @@
                     <tr th:each="item : ${items}">
                         <td class="checks"><label><input type="checkbox" th:name="${'id['+item.id+']'}"/></label></td>
                         <td th:text="${item.title}"></td>
-                        <td><a class="href" th:href="@{'/content/'+${item.path}}" th:text="${item.path}"
+                        <td><a class="href" th:href="@{'/content/'+${item.label}}" th:text="${item.label}"
                                target="_blank"></a></td>
                         <td th:text="${item.createBy?.name}"></td>
                         <td class="actions">

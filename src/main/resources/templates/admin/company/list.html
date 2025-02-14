@@ -7,9 +7,9 @@
 </th:block>
 <th:block layout:fragment="content">
     <div class="tool-box">
-        <h2>업체 목록</h2>
+        <h2 th:text="#{admin.company.list}"></h2>
         <div class="buttons">
-            <a class="button primary" th:href="@{/admin/company-form}">신규 업체</a>
+            <a class="button primary" th:href="@{/admin/company-form}" th:text="#{admin.company.list} + ' ' + #{form.register}"></a>
         </div>
     </div>
     <article>

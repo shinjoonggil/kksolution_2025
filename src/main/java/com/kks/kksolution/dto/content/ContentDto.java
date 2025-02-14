@@ -10,13 +10,13 @@ import java.util.UUID;
 public class ContentDto {
     private UUID id;
     private String title;
-    private String path;
+    private String label;
     private String content;
     private User createBy;
     public ContentDto(Content content) {
         this.id = content.getId();
         this.title = content.getTitle();
-        this.path = content.getPath();
+        this.label = content.getLabel();
         this.content = content.getContent();
         this.createBy = content.getCreateBy();
     }

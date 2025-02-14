@@ -1,4 +1,4 @@
-package com.kks.kksolution.dto.filter;
+package com.kks.kksolution.dto.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

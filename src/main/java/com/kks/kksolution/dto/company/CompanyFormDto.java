@@ -1,5 +1,6 @@
 package com.kks.kksolution.dto.company;
 
+import com.kks.kksolution.dto.common.CommonFormDto;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -10,7 +11,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
-public class CompanyFormDto {
+public class CompanyFormDto extends CommonFormDto {
     private UUID id;
     private String name;
     private String businessNumber;
