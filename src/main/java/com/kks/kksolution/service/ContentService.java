@@ -41,6 +41,9 @@ public class ContentService {
     public ContentDto getContent(UUID id) {
         return new ContentDto(getContentById(id));
     }
+    public ContentDto getContent(String label) {
+        return new ContentDto(getContentByLabel(label));
+    }
 
     public UUID contentProcess(ContentFormDto form) {
         String message = "content.success.update";
@@ -77,4 +80,8 @@ public class ContentService {
     private Content getContentById(UUID id) {
         return contentRepository.findById(id).orElseThrow(() -> new RuntimeException("content.error.null"));
     }
+    private Content getContentByLabel(String label) {
+        return contentRepository.findByLabel(label).orElseThrow(() -> new RuntimeException("content.error.null"));
+    }
+
 }

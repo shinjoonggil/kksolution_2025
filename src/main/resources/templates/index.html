@@ -3,7 +3,18 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/main/layout}">
     <th:block layout:fragment="content">
-        <section class="main_1"></section>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+        <script src="https://unpkg.com/type-hangul"></script>
+
+
+        <section class="main_1">
+            one day or day one
+            <div class="typing">안녕하세요.</div>
+            <div class="typing">Hello,World 2025 in Korea!!</div>
+            <script>
+                TypeHangul.type('.typing',true,10);
+            </script>
+        </section>
         <section class="main_2"></section>
         <section class="main_3"></section>
         <section class="main_4"></section>

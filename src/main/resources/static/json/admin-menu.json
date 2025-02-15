@@ -13,17 +13,7 @@
       }
     ]
   },
-  {
-    "label": "config",
-    "path": null,
-    "children": [
-      {
-        "label": "config",
-        "path": "/config",
-        "children": null
-      }
-    ]
-  },
+
   {
     "label": "user",
     "path": null,
@@ -39,6 +29,11 @@
     "label": "board",
     "path": null,
     "children": [
+      {
+        "label": "group",
+        "path": "/board-group",
+        "children": null
+      },
       {
         "label": "list",
         "path": "/board",
@@ -73,6 +68,17 @@
       {
         "label": "resource",
         "path": "/resource",
+        "children": null
+      }
+    ]
+  },
+  {
+    "label": "config",
+    "path": null,
+    "children": [
+      {
+        "label": "config",
+        "path": "/config",
         "children": null
       }
     ]

@@ -1,10 +1,18 @@
 package com.kks.kksolution.dto.resource;
 
-import java.util.UUID;
+import com.kks.kksolution.dto.common.CommonFormDto;
+import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
-public class ResourceFormDto {
+import java.util.UUID;
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
+public class ResourceFormDto extends CommonFormDto {
     private UUID id;
-    private String resourceGroupTitle;
     private String title;
-    private String description;
+    private String groupTitle;
+    private MultipartFile resource;
 }

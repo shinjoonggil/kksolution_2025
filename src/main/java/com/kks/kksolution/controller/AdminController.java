@@ -8,6 +8,7 @@ import com.kks.kksolution.dto.popup.PopupFormDto;
 import com.kks.kksolution.dto.inquiry.InquiryFormDto;
 import com.kks.kksolution.dto.portfolio.PortfolioFormDto;
 import com.kks.kksolution.dto.resource.ResourceFormDto;
+import com.kks.kksolution.dto.resource.ResourceGroupDto;
 import com.kks.kksolution.enumeration.InquiryType;
 import com.kks.kksolution.enumeration.PopupType;
 import com.kks.kksolution.enumeration.PortfolioType;
@@ -240,6 +241,7 @@ public class AdminController {
     public String createResourceForm(Model model) {
         model.addAttribute("menuLabel", "content.resource");
         model.addAttribute("item", resourceService.getEmptyData());
+        model.addAttribute("groups",resourceService.getAllGroup());
         return "admin/resource/form";
     }
 
@@ -247,6 +249,7 @@ public class AdminController {
     public String updateResourceForm(Model model, @PathVariable UUID id) {
         model.addAttribute("menuLabel", "content.resource");
         model.addAttribute("item", resourceService.getData(id));
+        model.addAttribute("groups",resourceService.getAllGroup());
         return "admin/resource/form";
     }
 
@@ -256,9 +259,10 @@ public class AdminController {
         return "redirect:resource-form/" + id;
     }
 
+
     @PostMapping("resource-delete")
-    public String resourceDelete(@ModelAttribute DeleteFormDto form, Locale locale) {
-        resourceService.deleteProcess(form);
+    public String resourceDelete(@ModelAttribute DeleteFormDto form) {
+        resourceService.deleteData(form);
         return "redirect:resource";
     }
 //    Resource Controller End

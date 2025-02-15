@@ -15,6 +15,8 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #ffffff30;
+    backdrop-filter: blur(3px);
 }
 
 header a.logo img {
@@ -135,3 +137,36 @@ nav.quick a span{
 }
 
 
+
+/* Common Style*/
+
+/* Main Style*/
+section#main_1{
+/*Company*/
+}
+section#main_2{
+    /*Service*/
+}
+section#main_3{
+    /*Portfolio*/
+}
+section#main_4{
+    /*Inquiry*/
+}
+
+/*Company Style*/
+section#company_1{
+
+}
+/*Service Style*/
+section#service_1{
+
+}
+/*Portfolio Style*/
+section#portfolio_1{
+
+}
+/*Inquiry Style*/
+section#inquiry_1{
+
+}

@@ -20,6 +20,7 @@
                 <div class="icon">
                     <img th:src="@{${'/assets/icon_svg/' + menu.label + '.svg'}}" th:class="icon"/>
                 </div>
+
                 <span th:text="#{'admin.'+ ${menu.label}}"/>
             </label>
             <ul th:if="${menu.children != null}">

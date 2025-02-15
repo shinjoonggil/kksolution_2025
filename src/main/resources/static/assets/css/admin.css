@@ -100,7 +100,7 @@ aside:hover > ul > li:has(:is(:checked , .menu-item.active)) > ul > li {
 }
 
 aside > ul > li .menu-item {
-    display: inline-block;
+    display: inline-flex;
     width: 240px;
     height: 30px;
     margin: 5px;
@@ -120,6 +120,7 @@ aside > ul > li .menu-item .icon {
     height: 30px;
     object-fit: contain;
     border-radius: 3px;
+    z-index: 10;
 }
 
 aside > ul > li .menu-item .icon img {
@@ -133,11 +134,27 @@ aside > ul > li .menu-item span {
     line-height: 30px;
     text-indent: 5px;
     vertical-align: bottom;
+    flex-grow: 1;
+    position: relative;
+}
+aside > ul > li .menu-item:not(.active):hover{
+    background-color: #ddd;
+}
+aside > ul > li .menu-item:not(.active) span::after {
+    content: '';
+    width: 30px;
+    height: 30px;
+    background-image: url("/assets/icon_svg/arrow_down.svg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    right: 5px;
+}
+aside > ul > li .menu-item:is(:has(:checked)) span::after{
+    transform: rotate(180deg);
 }
 
-aside > ul > li > ul {
-    /*overflow: hidden;*/
-}
 
 aside > ul > li > ul > li {
     height: 0;
@@ -164,12 +181,11 @@ aside > ul > li:has(:is(:checked , .menu-item.active)) > ul > li {
     height: 30px;
 }
 
-aside > ul > li .menu-item:is(.active,:has(:checked)) {
+aside > ul > li .menu-item:is(.active) {
     background-color: var(--color-primary);
     color: var(--color-white);
 }
-
-aside > ul > li .menu-item:is(.active,:has(:checked)) img {
+aside > ul > li .menu-item:is(.active) img {
     filter: var(--filter-white);
 }
 
@@ -261,11 +277,6 @@ fieldset {
 
 }
 
-fieldset:not(:last-child)::after {
-    content: '';
-    display: inline-block;
-    margin: 20px 0;
-}
 
 fieldset legend {
     font-size: 14px;
@@ -651,7 +662,18 @@ section.list .list-container {
     background-color: var(--color-white);
     border: 1px solid var(--color-disabled);
     box-sizing: border-box;
-    padding-bottom: 15px;
+    padding-bottom: 5px;
+}
+section.list .list-container::-webkit-scrollbar{
+    height: 5px;
+}
+section.list .list-container::-webkit-scrollbar-thumb{
+    background-color: var(--color-primary);
+    border-radius: 5px;
+}
+section.list .list-container::-webkit-scrollbar-track{
+    background-color: transparent;
+
 }
 section.list .list-container table {
     table-layout: fixed;
@@ -758,9 +780,9 @@ section.list .list-container table td.actions .delete{
 }
 section.list .list-container table tr.empty td{
     font-size: 16px;
-
     text-align: center;
     line-height: 200px;
+    color: #aaa;
 }
 /*List*/
 /*Pagination */
@@ -813,7 +835,7 @@ section.list .pagination .next{
 span.error{
     color: var(--color-error);
 }
-.form-control:has(input[data-type=select]) input[data-type=select]{
+.form-control input[data-type=select]{
     cursor: pointer;
 }
 .form-control:has(input[data-type=select]) ul{
@@ -827,6 +849,8 @@ span.error{
     box-shadow: 2px 2px 3px #cccccc70;
     z-index: 10;
     display: none;
+    max-height: 200px;
+    overflow-y: scroll;
 }
 .form-control:has(input[data-type=select]) li{
     line-height: 25px;
@@ -850,7 +874,33 @@ span.error{
     background-color: var(--color-white);
     min-height: 35px;
 }
-
+.form-control:has(input[data-type=auto-complete]) ul{
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background-color: var(--color-white);
+    width: 100%;
+    margin-top: 3px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 3px #cccccc70;
+    z-index: 10;
+    display: none;
+    max-height: 200px;
+    overflow-y: scroll;
+}
+.form-control:has(input[data-type=auto-complete]:focus-visible) ul{
+    display: inherit;
+}
+.form-control:has(input[data-type=auto-complete]) li{
+    line-height: 25px;
+    padding: 5px;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 14px;
+}
+.form-control:has([data-type=auto-complete]) li:hover{
+    background-color: var(--color-active);
+}
 .form-control .box-group{
     display: inline-block;
     width: 100%;

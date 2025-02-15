@@ -3,8 +3,9 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/main/layout}">
 <th:block layout:fragment="content">
-    <section>
-
+    <section id="content_1">
+        <h2 th:text="${content.getTitle()}"></h2>
+        <p th:utext="${content.getContent()}"></p>
     </section>
 </th:block>
 </html>

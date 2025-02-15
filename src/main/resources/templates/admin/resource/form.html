@@ -3,6 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/admin/layout}">
 <th:block layout:fragment="plugin">
+
     <script th:src="|${url}/assets/js/file.js|"></script>
 </th:block>
 
@@ -27,91 +28,33 @@
                         </label>
                         <input type="text" name="title" id="title" th:value="${item.title}" required/>
                     </div>
-                    <div class="form-group">
-                        <div class="form-control">
-                            <label for="category">
-                                <span class="label" th:text="#{resource.category}"></span>
-                            </label>
-                            <input type="text" name="category" id="category" th:value="${item.category}" />
-                        </div>
-                        <div class="form-control">
-                            <label for="tag">
-                                <span class="label" th:text="#{resource.tag}"></span>
-                            </label>
-                            <input type="text" name="tag" id="tag" th:value="${item.tag}" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-control">
-                            <label for="url">
-                                <span class="label" th:text="#{resource.url}"></span>
-                            </label>
-                            <input type="url" name="url" id="url" th:value="${item.url}"/>
-                        </div>
-                        <div class="form-control">
-                            <label for="type">
-                                <span class="label" th:text="#{resource.type}"></span>
-                            </label>
-                            <span class="select-value" th:if="${item.type == null}"></span>
 
-                            <span class="select-value" th:each="type : ${types}"
-                                  th:if="${type == item.type && item.type != null}"
-                                  th:text="#{${type.message}}"></span>
-                            <input type="hidden" name="type" id="type" th:value="${item?.type}"
-                                   data-type="select"/>
-                            <ul>
-                                <li th:each="type : ${types}" th:text="#{${type.message}}"
-                                    th:data-value="${type.name()}"></li>
-                            </ul>
-                        </div>
+                    <div class="form-control">
+                        <label for="groupTitle">
+                            <span class="label" th:text="#{resource.group}"></span>
+                        </label>
+                        <input type="text" name="groupTitle" id="groupTitle" th:value="${item.group?.title}"  data-type="auto-complete"/>
+                        <ul>
+                            <li th:each="group : ${groups}" th:text="${group.title}"></li>
+                        </ul>
                     </div>
                 </fieldset>
                 <fieldset>
                     <legend>이미지</legend>
-                    <div class="form-group">
-                        <div class="form-control">
-                            <label for="thumbnail">
-                                <span class="label" th:text="#{resource.thumbnail}"></span>
-                            </label>
-                            <label class="file-uploader">
-                                <span class="form-item" th:text="${item.thumbnail?.origin}"></span>
-                                <input type="file" name="thumbnail" id="thumbnail" accept="image/*" hidden/>
-                            </label>
-                        </div>
-                        <div class="form-control">
-                            <label for="header">
-                                <span class="label" th:text="#{resource.header}"></span>
-                            </label>
-                            <label class="file-uploader">
-                                <span class="form-item" th:text="${item.header?.origin}"></span>
-                                <input type="file" name="header" id="header" accept="image/*" hidden/>
-                            </label>
-                        </div>
-
-                    </div>
-
-
                     <div class="form-control">
-                        <label>
-                            <span class="label" th:text="#{resource.content}"></span>
+                        <label for="resource">
+                            <span class="label" th:text="#{resource.resource}"></span>
                         </label>
-                        <div class="editor" data-id="content" th:text="${item.content}"></div>
-                    </div>
-
-                </fieldset>
-
-                <fieldset>
-                    <legend th:text="#{form.etc}"></legend>
-                    <div class="form-control">
-                        <label>
-                            <span class="label" th:text="#{resource.description}"></span>
+                        <label class="file-uploader">
+                            <span class="form-item" th:text="${item.resource?.origin}"></span>
+                            <input type="file" name="resource" id="resource" accept="image/*" hidden/>
                         </label>
-                        <div class="editor" data-id="description" th:text="${item.description}"></div>
                     </div>
                 </fieldset>
             </section>
         </article>
         <input type="hidden" name="id" th:value="${item.id}"/>
     </form>
+
 </th:block>
 </html>

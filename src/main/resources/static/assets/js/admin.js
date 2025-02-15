@@ -112,24 +112,60 @@ window.addEventListener('load', () => {
             deleteText.focus()
         })
     })
-    document.querySelectorAll('.form-control:has(input[data-type=select])').forEach(control=>{
+    document.querySelectorAll('.form-control:has(input[data-type=select])').forEach(control => {
         const optionsContainer = control.querySelector('ul')
         const options = optionsContainer.querySelectorAll('li')
         const span = control.querySelector('span.select-value')
         const input = control.querySelector('input[data-type=select]')
-        span.addEventListener('click',e=>{
+        span.addEventListener('click', e => {
             e.stopPropagation()
-            optionsContainer.style.display='block'
-            window.addEventListener('click',e=>{
-                optionsContainer.style.display='none'
+            optionsContainer.style.display = 'block'
+            window.addEventListener('click', e => {
+                optionsContainer.style.display = 'none'
             })
         })
-        options.forEach(option=>{
-            option.addEventListener('click',e=>{
-                input.value=e.target.dataset.value
-                span.textContent=e.target.textContent
+        options.forEach(option => {
+            option.addEventListener('click', e => {
+                input.value = e.target.dataset.value
+                span.textContent = e.target.textContent
             })
         })
+    })
+
+    document.querySelectorAll('.form-control:has([data-type=auto-complete])').forEach(control => {
+        const input = control.querySelector('input')
+        const list = control.querySelector('ul')
+        const items = list.querySelectorAll('li')
+
+        const setCompleteList = (text) => {
+            items.forEach(item => {
+                if (!item.textContent.includes(text)) {
+                    item.style.display = 'none'
+                } else {
+                    item.style.removeProperty('display')
+                }
+            })
+        }
+
+        input.addEventListener('focus', e => {
+            e.stopPropagation()
+            list.style.display = 'block'
+            window.addEventListener('click', e => {
+                list.style.removeProperty('display')
+            })
+        })
+        input.addEventListener('input', e => setCompleteList(e.target))
+
+        items.forEach(item => {
+            item.addEventListener('click', e => {
+                input.value = item.textContent
+                setCompleteList(item.textContent)
+            })
+        })
+        setCompleteList(input.value)
+
+
+
 
     })
 })
