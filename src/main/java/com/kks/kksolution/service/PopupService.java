@@ -10,6 +10,8 @@ import com.kks.kksolution.repository.PopupRepository;
 import com.kks.kksolution.util.LocaleComponent;
 import com.kks.kksolution.util.SecurityUtil;
 import com.kks.kksolution.vo.common.MessageVO;
+
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +24,8 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -56,7 +60,7 @@ public class PopupService {
     public UUID dataProcess(PopupFormDto form) {
         String message = "data.success.update";
         Popup popup = popupRepository.findById(form.getId()).orElse(null);
-        log.info("USer : {}" , SecurityUtil.getCurrentUser());
+        log.info("USer : {}", SecurityUtil.getCurrentUser());
         if (popup == null) {//create
             popup = Popup.builder()
                     .id(form.getId())
@@ -111,5 +115,21 @@ public class PopupService {
 
     private Popup getDataById(UUID id) {
         return popupRepository.findById(id).orElseThrow(() -> new RuntimeException("data.error.null"));
+    }
+
+    public List<PopupDto> getVisiblePopup() {
+        List<Popup> popupList = popupRepository.findAllVisiblePopup();
+        List<PopupDto> popupDtoList = new ArrayList<>();
+        for (Popup popup : popupList) {
+            boolean isHidden = false;
+            for (Cookie cookie : request.getCookies()) {
+                if (cookie.getName().equals(String.format("popup_hide_%s", popup.getId()))) {
+                    isHidden = true;
+                    break;
+                }
+            }
+            if (!isHidden) popupDtoList.add(new PopupDto(popup, endPoint, bucket));
+        }
+        return popupDtoList;
     }
 }
