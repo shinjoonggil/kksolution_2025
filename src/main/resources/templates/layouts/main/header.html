@@ -8,7 +8,7 @@
     <nav>
         <ul th:if="${globalMenu.header != null}">
             <li th:each="menu : ${globalMenu.header}">
-                <a th:text="#{${menu.label}}" th:href="@{${menu.path}}" class="hover" data-animation="upscale"></a>
+                <a th:text="#{${menu.label}}" th:href="@{${menu.path}}" class="hover" data-animation="upscale" ></a>
 
                 <ul th:if="${menu.children}">
                     <li th:each="children : ${menu.children}">

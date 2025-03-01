@@ -1,6 +1,6 @@
 package com.kks.kksolution.entity;
 
-import com.kks.kksolution.enumeration.MenuType;
+import com.kks.kksolution.constant.MenuType;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;

@@ -2,21 +2,33 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/main/layout}">
-    <th:block layout:fragment="content">
-        <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
-        <script src="https://unpkg.com/type-hangul"></script>
+
+<th:block layout:fragment="plugin">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/type-hangul"></script>
+</th:block>
+
+<th:block layout:fragment="content">
+    <section id="main_1" class="init">
+        <div class="background"></div>
+        <h2 data-aos="flip-down">
+            <span style="color: var(--color-primary);">one day</span>
+            or
+            <span style="color: var(--color-primary);">day one</span>
+
+            you
+            <span style="color: var(--color-error);">decide</span>
+        </h2>
+        <p data-aos="flip-down" data-aos-delay="500" data-aos-duration="1000">기업의 디지털 분야에 최적화된 서비스를 제공하여 새로운 비즈니스
+            가치를 함께 만들어갑니다.</p>
+    </section>
+
+    <section id="main_2">
 
 
-        <section class="main_1">
-            one day or day one
-            <div class="typing">안녕하세요.</div>
-            <div class="typing">Hello,World 2025 in Korea!!</div>
-            <script>
-                TypeHangul.type('.typing',true,10);
-            </script>
-        </section>
-        <section class="main_2"></section>
-        <section class="main_3"></section>
-        <section class="main_4"></section>
-    </th:block>
+    </section>
+    <section id="main_3"></section>
+    <section id="main_4"></section>
+
+</th:block>
 </html>

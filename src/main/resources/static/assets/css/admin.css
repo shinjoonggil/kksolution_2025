@@ -144,7 +144,7 @@ aside > ul > li .menu-item:not(.active) span::after {
     content: '';
     width: 30px;
     height: 30px;
-    background-image: url("/assets/icon_svg/arrow_down.svg");
+    background-image: url("../icon_svg/arrow_down.svg");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -563,15 +563,15 @@ fieldset legend {
 }
 
 .multi-uploader p.actions a.download {
-    background-image: url("/assets/icon_svg/download.svg");
+    background-image: url("../icon_svg/download.svg");
 }
 
 .multi-uploader p.actions a.preview {
-    background-image: url("/assets/icon_svg/preview.svg");
+    background-image: url("../icon_svg/preview.svg");
 }
 
 .multi-uploader p.actions a.delete {
-    background-image: url("/assets/icon_svg/delete.svg");
+    background-image: url("../icon_svg/delete.svg");
 }
 
 .multi-uploader p.actions a:hover {
@@ -709,13 +709,13 @@ section.list .list-container table :is(th,td).checks input[type=checkbox] {
 }
 section.list .list-container table :is(th,td).checks label:has(input[type=checkbox]) {
     cursor: pointer;
-    background-image: url("/assets/icon_svg/checkbox_blank.svg");
+    background-image: url("../icon_svg/checkbox_blank.svg");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
 }
 section.list .list-container table :is(th,td).checks label:has(input[type=checkbox]:checked) {
-    background-image: url("/assets/icon_svg/checkbox_check.svg");
+    background-image: url("../icon_svg/checkbox_check.svg");
 }
 section.list .list-container table tr:has(:checked) td {
     background-color: var(--color-active);
@@ -733,10 +733,10 @@ section.list .list-container table thead th a {
 }
 
 section.list .list-container table thead th.asc {
-    background-image: url("/assets/icon_svg/arrow_up.svg");
+    background-image: url("../icon_svg/arrow_up.svg");
 }
 section.list .list-container table thead th.desc {
-    background-image: url("/assets/icon_svg/arrow_down.svg");
+    background-image: url("../icon_svg/arrow_down.svg");
 }
 section.list .list-container table thead th:is(.desc,.asc) {
     background-position-x: 100%;
@@ -755,10 +755,10 @@ section.list .list-container table td.actions :is(a,button){
     cursor: pointer;
 }
 section.list .list-container table td.actions .edit{
-    background-image: url("/assets/icon_svg/edit.svg");
+    background-image: url("../icon_svg/edit.svg");
 }
 section.list .list-container table td.actions .delete{
-    background-image: url("/assets/icon_svg/delete.svg");
+    background-image: url("../icon_svg/delete.svg");
 }
 section.list .list-container table tr.empty td{
     font-size: 16px;
@@ -806,10 +806,10 @@ section.list .pagination .next {
     background-repeat: no-repeat;
 }
 section.list .pagination .prev{
-    background-image: url("/assets/icon_svg/arrow_left.svg");
+    background-image: url("../icon_svg/arrow_left.svg");
 }
 section.list .pagination .next{
-    background-image: url("/assets/icon_svg/arrow_right.svg");
+    background-image: url("../icon_svg/arrow_right.svg");
 }
 /*Pagination */
 

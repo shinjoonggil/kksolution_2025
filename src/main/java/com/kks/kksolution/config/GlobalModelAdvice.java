@@ -1,6 +1,7 @@
 package com.kks.kksolution.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kks.kksolution.constant.InquiryType;
 import com.kks.kksolution.entity.Menu;
 import com.kks.kksolution.repository.MenuRepository;
 import com.kks.kksolution.vo.menu.MenuTreeVO;
@@ -86,5 +87,9 @@ public class GlobalModelAdvice {
             }
         }
         return "";
+    }
+    @ModelAttribute("inquiryTypes")
+    public InquiryType[] setInquiryTypes(HttpServletRequest request) {
+        return InquiryType.values();
     }
 }

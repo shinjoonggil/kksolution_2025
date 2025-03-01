@@ -14,22 +14,26 @@ public class ViewController {
     private final HttpServletRequest request;
     @GetMapping("company")
     public String companyView(Model model){
-        model.addAttribute("title","Company");
+        model.addAttribute("title","menu.company");
+        model.addAttribute("id","company");
         return "view/company";
     }
     @GetMapping("service")
     public String serviceView(Model model){
-        model.addAttribute("title","Service");
+        model.addAttribute("title","menu.service");
+        model.addAttribute("id","service");
         return "view/service";
     }
     @GetMapping("portfolio")
     public String portfolioView(Model model){
-        model.addAttribute("title","Portfolio");
+        model.addAttribute("title","menu.portfolio");
+        model.addAttribute("id","portfolio");
         return  "view/portfolio";
     }
     @GetMapping("contact")
     public String contactView(Model model){
-        model.addAttribute("title","Contact");
+        model.addAttribute("title","menu.contact");
+        model.addAttribute("id","contact");
         return  "view/contact";
     }
 

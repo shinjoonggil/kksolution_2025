@@ -1,6 +1,6 @@
 package com.kks.kksolution.entity;
 
-import com.kks.kksolution.enumeration.UserRole;
+import com.kks.kksolution.constant.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -9,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Collections;
@@ -20,7 +21,8 @@ import java.util.Collections;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class UserAccount implements UserDetails {
+public class UserAccount implements UserDetails{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

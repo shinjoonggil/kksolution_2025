@@ -12,6 +12,7 @@ public class MainController {
     private final PopupService popupService;
     @GetMapping("")
     public String index(Model model) {
+        model.addAttribute("id","main");
 //        model.addAttribute("popup",popupService.getVisiblePopup());
         return "index";
     }

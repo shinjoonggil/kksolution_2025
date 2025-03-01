@@ -1,7 +1,7 @@
 package com.kks.kksolution.dto.inquiry;
 
 import com.kks.kksolution.dto.common.CommonFormDto;
-import com.kks.kksolution.enumeration.InquiryType;
+import com.kks.kksolution.constant.InquiryType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

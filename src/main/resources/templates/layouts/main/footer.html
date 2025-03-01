@@ -3,27 +3,28 @@
     <nav>
         <ul th:if="${globalMenu.content != null}">
             <li th:each="menu : ${globalMenu.content}">
-                <a th:text="#{${menu.label}}" th:href="@{${menu.path}}"></a>
+                <a th:text="#{${menu.label}}" th:href="@{${menu.path}}" class="hover"></a>
             </li>
         </ul>
-<!--        <ul>-->
-<!--            <li>-->
-<!--                <a th:href="@{/content/privacy}" th:text="#{menu.privacy}"/>-->
-<!--            </li>-->
-<!--            <li>-->
-<!--                <a th:href="@{/content/email}" th:text="#{menu.email}"/>-->
-<!--            </li>-->
-<!--            <li>-->
-<!--                <a th:href="@{/content/terms}" th:text="#{menu.terms}"/>-->
-<!--            </li>-->
-<!--        </ul>-->
+        <!--        <ul>-->
+        <!--            <li>-->
+        <!--                <a th:href="@{/content/privacy}" th:text="#{menu.privacy}"/>-->
+        <!--            </li>-->
+        <!--            <li>-->
+        <!--                <a th:href="@{/content/email}" th:text="#{menu.email}"/>-->
+        <!--            </li>-->
+        <!--            <li>-->
+        <!--                <a th:href="@{/content/terms}" th:text="#{menu.terms}"/>-->
+        <!--            </li>-->
+        <!--        </ul>-->
     </nav>
     <address>
         <div class="left">
             <ul class="company">
-                <li><a th:href="'tel:' + #{config.contact}" th:text="#{config.contact}" target="_blank"></a></li>
-                <li><a th:href="'mailto:' + #{config.email} " th:text="#{config.email}" target="_blank"></a></li>
-                <li><a th:href="'https://map.naver.com/v5/search/' + #{config.address}" th:text="#{config.address}" target="_blank"></a></li>
+                <li><a th:href="'tel:' + #{config.contact}" th:text="#{config.contact}"></a></li>
+                <li><a th:href="'mailto:' + #{config.email} " th:text="#{config.email}"></a></li>
+                <li><a th:href="'https://map.naver.com/v5/search/' + #{app.title}" th:text="#{config.address}"
+                       target="_blank"></a></li>
 
             </ul>
         </div>

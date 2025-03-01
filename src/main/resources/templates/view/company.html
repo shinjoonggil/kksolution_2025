@@ -2,9 +2,150 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/main/layout}">
-<th:block layout:fragment="content">
-    <section>
+<th:block layout:fragment="plugin">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
 
+    <script th:inline="javascript">
+        window.addEventListener('load',_=>{
+            gsap.registerPlugin(ScrollTrigger)
+            gsap.to('ul.partners', {
+                x: '-100%',
+                duration: 2, // 애니메이션 지속 시간 (2초)
+                scrollTrigger: {
+                    trigger: 'ul.partners', // 스크롤 트리거 대상
+                    start: `top center`,
+                    end: 'bottom top',
+                    scrub: true,
+                    markers: true,
+                },
+            })
+
+        })
+
+        /*<![CDATA[*/
+
+        /*]]>*/
+
+    </script>
+</th:block>
+<th:block layout:fragment="content">
+    <section id="company_1" class="init">
+        <div class="background"></div>
+        <h2 th:text="#{menu.company}"></h2>
+    </section>
+    <section>
+        <div class="grid-content" data-aos="fade-down" >
+            <em>KKSolution</em>
+            <div>
+                <h4>WEB을 통한 새로운 경험</h4>
+                <h3>그 중심에 <span class="primary">케이투솔루션</span>이 있습니다</h3>
+            </div>
+        </div>
+        <div class="grid-content" data-aos="fade-down" >
+            <em>service</em>
+            <div>
+                <h5>성공적인 프로젝트 수행을 위해 최고의 기술력으로 최선을 다합니다.</h5>
+                <p>
+                    케이투솔루션의 비즈니스 디자인은 브랜드의 관점에서 부터 시작합니다.
+                    고객에게 전하고자 하는 가치를 컨셉화하고 정확하고 눈으로 볼 수 있는 명확한 산출물로 제공합니다.
+                    철저한 기획, 기발한 창의력, 오랜 경험에서 나오는 해답들로 고객사의 만족을 이끌어냅니다.
+                </p>
+            </div>
+        </div>
+        <div class="grid-content" data-aos="fade-down" >
+            <em>design</em>
+            <div>
+                <h5>business digital design service</h5>
+                <p>
+                    케이투솔루션의 비즈니스 디자인은 브랜드의 관점에서 부터 시작합니다.
+                    고객에게 전하고자 하는 가치를 컨셉화하고 정확하고 눈으로 볼 수 있는 명확한 산출물로 제공합니다.
+                    철저한 기획, 기발한 창의력, 오랜 경험에서 나오는 해답들로 고객사의 만족을 이끌어냅니다.
+                </p>
+            </div>
+        </div>
+        <div class="grid-content" data-aos="fade-down" >
+            <em>team</em>
+            <div>
+                <h5>케이투솔루션의 모든 프로젝트는 전문가로 구성된 팀과 함께합니다.</h5>
+                <p>
+                    프로젝트를 세밀하고 완성도 있게 잘 수행 하기 위해선 정성과 노력도 필요하지만 무엇보다 실력이 있어야 합니다.
+                    원하시는 기능, 디자인, 시스템이 있다면 말씀해주세요.
+                    불가능한 개발은 없습니다.
+                </p>
+            </div>
+        </div>
+        <div class="grid-content" data-aos="fade-down" >
+            <em>relationship</em>
+            <div>
+                <h5>고객과의 인연을 끝까지</h5>
+                <p>
+                    케이투솔루션은 홈페이지, 영상, 어플제작, SNS 마케팅 등 다양한 분야에서 고객과의 관계를 맺고 있습니다.
+                    한번 인연을 맺은 고객과는 같이 성공을 해야 한다는 생각을 갖고 있습니다.
+                    어려운 시기이지만 함께 잘 이겨 내리라는 자신감을 갖고 있습니다.
+                </p>
+            </div>
+        </div>
+        <div class="grid-content" data-aos="fade-down" >
+            <em>organization</em>
+            <div>
+                <h5>통찰력 있는 전문가 조직</h5>
+                <p>
+                    고객에게 가치와 성공을 드리기 위해 통찰력 있는 전문가들이 함께 합니다.
+                </p>
+            </div>
+        </div>
+        <div class="grid-content" data-aos="fade-down" >
+            <em>operation</em>
+            <div>
+                <h5>케이투솔루션 자체 제작 관리 프로그램</h5>
+                <h6>직관적이고 편리한 운영 및 관리</h6>
+                <p>
+                    홈페이지/쇼핑몰의 경우 유지보수는 구축만큼이나 중요한 사항이니만큼, 즉각적인 대응과 업데이트가 가능하여야 하며 편리함과 더불어 외부의 공격으로부터 안전해야합니다.
+                </p>
+                <div id="operation">
+                    <ol>
+                        <li>
+                            <span>point 1</span>
+                            <b>UI/UX</b>
+                            <p>
+                                UI(User Interface) , UX(User Experience)
+
+                            </p>
+                        </li>
+
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="grid-content" data-aos="fade-down" >
+            <em>partners</em>
+            <div>
+                <h5>고객사</h5>
+                <p>
+                    고객에게 가치와 성공을 드리기 위해 통찰력 있는 전문가들이 함께 합니다.
+                </p>
+                <ul class="partners">
+                    <li><a href="#" target="_blank"><img src="/assets/image/kakao.jpg"/></a></li>
+                    <li><a href="#" target="_blank"><img src="/assets/image/kakao.jpg"/></a></li>
+                    <li><a href="#" target="_blank"><img src="/assets/image/kakao.jpg"/></a></li>
+                    <li><a href="#" target="_blank"><img src="/assets/image/kakao.jpg"/></a></li>
+                    <li><a href="#" target="_blank"><img src="/assets/image/kakao.jpg"/></a></li>
+                    <li><a href="#" target="_blank"><img src="/assets/image/kakao.jpg"/></a></li>
+                    <li><a href="#" target="_blank"><img src="/assets/image/kakao.jpg"/></a></li>
+                    <li><a href="#" target="_blank"><img src="/assets/image/kakao.jpg"/></a></li>
+                    <li><a href="#" target="_blank"><img src="/assets/image/kakao.jpg"/></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="grid-content" data-aos="fade-down" >
+            <em>location</em>
+            <div>
+                <h5 th:text="#{config.address}"></h5>
+                <iframe class="paper location" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d203.84375711795397!2d129.06945698356685!3d35.16908573381935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3568eba0bd2a4f89%3A0x560f382167348832!2z7LyA7J207Yis7IaU66Oo7IWY!5e0!3m2!1sko!2skr!4v1740454990057!5m2!1sko!2skr"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+            </div>
+        </div>
     </section>
 </th:block>
 </html>

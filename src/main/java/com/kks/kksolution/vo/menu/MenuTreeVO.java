@@ -2,7 +2,7 @@ package com.kks.kksolution.vo.menu;
 
 import com.kks.kksolution.entity.Menu;
 
-import com.kks.kksolution.enumeration.MenuType;
+import com.kks.kksolution.constant.MenuType;
 import lombok.Getter;
 
 import java.util.ArrayList;

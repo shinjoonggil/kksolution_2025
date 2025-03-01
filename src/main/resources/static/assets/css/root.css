@@ -8,6 +8,10 @@ a:hover, a:active {
     text-decoration: none;
     color: inherit;
 }
+*{
+    box-sizing: border-box;
+}
+
 
 :root {
     --color-primary: #2f5ee7;
@@ -16,13 +20,21 @@ a:hover, a:active {
     --color-white: #fff;
     --color-light: #f4ede8;
     --color-background: #f4f4f4;
-    --color-secondary: #2e455c;
+    --color-secondary: #a782c5;
+    --color-success : #55bc6a;
     --color-active: #dee6ff;
     --color-disabled: #ddd;
     --color-error: #ff6666;
     --color-info: #61a1f1;
     --filter-light: invert(98%) sepia(4%) saturate(708%) hue-rotate(312deg) brightness(100%) contrast(92%);
     --filter-white: invert(100%) sepia(0%) saturate(10%) hue-rotate(153deg) brightness(103%) contrast(101%);
+    --cursor-x : -100vw;
+    --cursor-y : -100vh;
+    --color-gray:#959595;
+    /*--gradient-a : linear-gradient(225deg, rgba(164,236,224,1) 0%, rgba(32,212,180,1) 50%, rgba(24,204,253,1) 100%);*/
+    --gradient-a : linear-gradient(to bottom , #a4ece0, #20d4b4);
+    --gradient-b : linear-gradient(to bottom , #20d4b4, #18ccfd);
+    --gradient-c : linear-gradient(to bottom , #18ccfd, #a4ece0);
 }
 
 

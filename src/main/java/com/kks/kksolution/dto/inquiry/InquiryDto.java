@@ -1,7 +1,7 @@
 package com.kks.kksolution.dto.inquiry;
 
 import com.kks.kksolution.entity.Inquiry;
-import com.kks.kksolution.enumeration.InquiryType;
+import com.kks.kksolution.constant.InquiryType;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -10,7 +10,7 @@ import java.util.UUID;
 @Getter
 public class InquiryDto {
     private UUID id;
-    private String title;
+    private String companyName;
     private String content;
     private InquiryType type;
     private String agentName;
@@ -22,7 +22,7 @@ public class InquiryDto {
     private LocalDateTime createAt;
     public InquiryDto(Inquiry inquiry) {
         this.id = inquiry.getId();
-        this.title = inquiry.getTitle();
+        this.companyName = inquiry.getCompanyName();
         this.content = inquiry.getContent();
         this.url = inquiry.getUrl();
         this.type=inquiry.getInquiryType();

@@ -1,39 +1,49 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<nav th:fragment="navigation" class="quick">
-    <ul>
-        <li>
-            <a th:href="@{https://pf.kakao.com/_FwxdxmG}">
-                <div>
-                    <img th:src="@{/assets/icon_svg/chat.svg}" alt="chat"/>
-                    <span>카톡상담</span>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a>
-                <div>
-                    <img th:src="@{/assets/icon_svg/location.svg}" alt="location"/>
-                    <span>방문상담</span>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a th:href="@{tel:051-816-1470}">
-                <div>
-                    <img th:src="@{/assets/icon_svg/contact.svg}" alt="contact"/>
-                    <span>전화상담</span>
-                </div>
-            </a>
-        </li>
-        <li>
-            <a th:href="@{/view/contact}">
-                <div>
-                    <img th:src="@{/assets/icon_svg/inquiry.svg}" alt="inquiry"/>
-                    <span>온라인문의</span>
-                </div>
-            </a>
-        </li>
-    </ul>
-
-</nav>
+<th:block th:fragment="navigation">
+    <nav class="quick">
+        <ul data-aos="fade">
+            <li><a th:href="'tel:' + #{config.contact}"><i class="material-icons">call</i><span class="hover"
+                                                                                                data-animation="leap">전화 상담</span></a>
+            </li>
+            <li><a th:href="'mailto:' + #{config.email}"><i class="material-icons">mail</i><span class="hover"
+                                                                                                 data-animation="leap">메일 전송</span></a>
+            </li>
+            <li><a target="_blank" href="https://pf.kakao.com/_FwxdxmG/chat"><i class="material-icons">sms</i><span
+                    class="hover" data-animation="leap">카톡 문의</span></a></li>
+            <li><a data-modal-target="location"><i class="material-icons">pin_drop</i><span class="hover"
+                                                                                            data-animation="leap">위치 보기</span></a>
+            </li>
+            <li><a class="hover" data-animation="leap" href="/view/contact"><i class="material-icons">edit_note</i>문의 작성</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="modal" data-modal="location">
+        <a class="modal-close">
+            <i class="material-icons">close</i>
+        </a>
+        <div class="modal-container">
+            <h4>오시는길</h4>
+            <p th:text="#{config.address}" th:data-copy="#{config.address}"></p>
+<!--            <div id="daumRoughmapContainer1740299552731" class="root_daum_roughmap root_daum_roughmap_landing"></div>-->
+<!--            <script charset="UTF-8" class="daum_roughmap_loader_script"-->
+<!--                    src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>-->
+<!--            <script charset="UTF-8">-->
+<!--                new daum.roughmap.Lander({-->
+<!--                    "timestamp": "1740299552731",-->
+<!--                    "key": "2n5cr",-->
+<!--                }).render();-->
+<!--            </script>-->
+        </div>
+    </div>
+</th:block>
 </html>
+
+
+반갑습니다,
+저는 케이투솔루션의 신중길 대표 입니다.
+이번에 저희 업체의 홈페이지 프로젝트에 대해서 문의 드리려고 합니다.
+참고 할 만한 레퍼런스로는 https://kksolution.co.kr 이며
+프로젝트의 기한은 무관 , 예산은 미정입니다.
+추가 문의내용은 [~~~~~]입니다.
+참고 할 파일을 첨부합니다.
+내용을 확인 하신 후 shinjoonggil@icloud.com 이나 010-8483-0653 으로 연락 부탁드립니다.

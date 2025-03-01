@@ -64,7 +64,7 @@ public class InquiryService {
 
 
 
-        inquiry.setTitle(form.getTitle());
+        inquiry.setCompanyName(form.getTitle());
         inquiry.setUrl(form.getUrl());
         inquiry.setInquiryType(form.getType());
         inquiry.setContent(form.getContent());
@@ -85,6 +85,10 @@ public class InquiryService {
         inquiryRepository.deleteById(form.getId());
         session.setAttribute("message", MessageVO.SUCCESS("data.success.delete"));
 
+    }
+    public String writeQuickInquiry(){
+
+        return "";
     }
 
     private Inquiry getDataById(UUID id) {

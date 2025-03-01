@@ -1,6 +1,6 @@
 package com.kks.kksolution.entity;
 
-import com.kks.kksolution.enumeration.InquiryType;
+import com.kks.kksolution.constant.InquiryType;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -18,8 +18,8 @@ import java.util.UUID;
 public class Inquiry {
     @Id
     private UUID id;
-    private String title;
-    private String content;
+    private String companyName;
+
     @Enumerated(EnumType.STRING)
     private InquiryType inquiryType;
 
@@ -27,7 +27,11 @@ public class Inquiry {
     private String agentContact;
     private String agentEmail;
     private String url;
+    private String deadline;
+    private String budget;
 
+    @Column(columnDefinition = "TEXT")
+    private String content;
     @Column(columnDefinition = "MEDIUMTEXT")
     private String description;
 

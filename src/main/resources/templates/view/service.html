@@ -2,9 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/main/layout}">
-<th:block layout:fragment="content">
-    <section>
+<th:block layout:fragment="plugin">
 
+</th:block>
+<th:block layout:fragment="content">
+    <section id="service_1">
+        <div class="background"></div><div class="content">
+        <h2 th:text="#{menu.service}"></h2>
+    </div>
     </section>
 </th:block>
 </html>

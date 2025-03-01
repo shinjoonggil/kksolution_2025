@@ -3,7 +3,7 @@ package com.kks.kksolution.dto.portfolio;
 import com.kks.kksolution.dto.upload.UploadFileDto;
 import com.kks.kksolution.entity.Portfolio;
 import com.kks.kksolution.entity.User;
-import com.kks.kksolution.enumeration.PortfolioType;
+import com.kks.kksolution.constant.PortfolioType;
 import lombok.Getter;
 
 import java.util.UUID;

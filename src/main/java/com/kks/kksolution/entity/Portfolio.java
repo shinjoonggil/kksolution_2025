@@ -1,6 +1,6 @@
 package com.kks.kksolution.entity;
 
-import com.kks.kksolution.enumeration.PortfolioType;
+import com.kks.kksolution.constant.PortfolioType;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;

@@ -1,7 +1,7 @@
 package com.kks.kksolution.dto.portfolio;
 
 import com.kks.kksolution.dto.common.CommonFormDto;
-import com.kks.kksolution.enumeration.PortfolioType;
+import com.kks.kksolution.constant.PortfolioType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
