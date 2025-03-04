@@ -14,9 +14,11 @@ a:hover, a:active {
 
 
 :root {
-    --color-primary: #2f5ee7;
+    --color-primary: #6c8fec;
+    /*--color-primary: #2f5ee7;*/
     --color-normal: #a9a9a9;
-    --color-text: #2e455c;
+    --color-text: #000;
+    /*--color-text: #2e455c;*/
     --color-white: #fff;
     --color-light: #f4ede8;
     --color-background: #f4f4f4;
